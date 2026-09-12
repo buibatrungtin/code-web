@@ -1,0 +1,852 @@
+/*================================*
+ ||       MENU & SIDEBAR       ||
+ *================================*/
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('Data_Hong™')
+    .addItem('Mở Bảng điều khiển', 'showSidebar')
+    .addItem('Tiếp tục tải đang tạm dừng', 'resumeDataCookerReports')
+    .addItem('Dừng lượt tải ở dòng tiến độ đã chọn', 'cancelDataCookerReport')
+    .addToUi();
+}
+
+function showSidebar() {
+  SpreadsheetApp.getUi()
+    .showSidebar(HtmlService.createHtmlOutputFromFile('Sidebar')
+      .setTitle('Data_Hong - Dashboard Automation'));
+}
+
+/*================================*
+ ||        API HELPER          ||
+ *================================*/
+
+function callApi_(path, payload) {
+  const API_BASE = 'https://uzycjdnivcfnfpjcpubi.supabase.co/functions/v1/datacooker-api';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV6eWNqZG5pdmNmbmZwamNwdWJpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgxNTQ5MjIsImV4cCI6MjEwMzczMDkyMn0.M1a1_ICnH-RMjnvdLRe6t7fQc1V6PiLo9mRqJJwGNUk'; // lấy trong Supabase > Project Settings > API
+
+  const userApiKey = (payload && payload.apiKey) 
+    ? payload.apiKey 
+    : PropertiesService.getUserProperties().getProperty('USER_API_KEY');
+
+  if (!userApiKey) {
+    throw new Error('Chưa có API Key. Vui lòng nhập key để kích hoạt.');
+  }
+
+  const route = path ? (path.startsWith('/') ? path : '/' + path) : '/init';
+
+  const res = UrlFetchApp.fetch(API_BASE + route, {
+    method: 'post',
+    contentType: 'application/json',
+    headers: { 
+      'x-api-key': userApiKey,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,   // ← THÊM DÒNG NÀY
+      'apikey': SUPABASE_ANON_KEY                        // ← THÊM DÒNG NÀY
+    },
+    muteHttpExceptions: true,
+    payload: JSON.stringify(payload || {})
+  });
+
+  const responseText = res.getContentText() || '{}';
+  let json;
+  try {
+    json = JSON.parse(responseText);
+  } catch (e) {
+    throw new Error('API trả về dữ liệu không hợp lệ (HTTP ' + res.getResponseCode() + ').');
+  }
+
+  if (res.getResponseCode() >= 400 || json.ok === false) {
+    throw new Error(route + ': ' + (json.error || ('API lỗi HTTP ' + res.getResponseCode())));
+  }
+
+  // Lưu key vào bộ nhớ máy tính sau khi gọi API thành công
+  PropertiesService.getUserProperties().setProperty('USER_API_KEY', userApiKey);
+
+  return json;
+}
+
+
+/*================================*
+ ||  SIDEBAR -> SUPABASE WRAPPERS ||
+ *================================*/
+
+function loadInitialData() {
+  const hasApiKey = !!PropertiesService.getUserProperties().getProperty('USER_API_KEY');
+  if (!hasApiKey) {
+    return { hasApiKey: false };
+  }
+
+  try {
+    const result = callApi_('/init', {});
+    if (result.ok && result.data) {
+        result.data.hasApiKey = true;
+        result.data.pagesJson = result.data.tokensJson || "[]"; 
+        // Do not log the full initialization payload.
+        return result.data;
+    } else {
+        throw new Error("API không trả về dữ liệu hợp lệ.");
+    }
+  } catch (e) {
+    Logger.log("Không thể tải dữ liệu khởi tạo: " + e.message);
+    throw new Error("Không thể tải dữ liệu khởi tạo: " + e.message);
+  }
+}
+
+function saveTaskConfig(task) {
+  const result = callApi_('/manage', { resource: 'task', action: 'save', payload: task });
+  updateMasterTrigger(); 
+  return result.data;
+}
+
+function deleteTaskConfig(taskId) {
+  callApi_('/manage', { resource: 'task', action: 'delete', payload: { taskId: taskId } });
+  const initResult = callApi_('/init', {});
+  return initResult.data ? initResult.data.tasksJson : "[]";
+}
+
+function runAndSaveTaskConfig(task) {
+    if (task && ['fanpage_insights','post_insights'].includes(task.serviceType)) return dcStartFanpage_(task, true);
+    try {
+        // 1. Lưu cấu hình Task (Giữ nguyên logic cũ)
+        const saveResult = callApi_('/manage', { resource: 'task', action: 'save', payload: task });
+        const savedTask = saveResult.data.savedTask;
+        updateMasterTrigger();
+
+        // 2. Chuẩn bị Sheet (Giữ nguyên logic cũ)
+        const ss = SpreadsheetApp.getActiveSpreadsheet();
+        const timezone = ss.getSpreadsheetTimeZone();
+        let sh = ss.getSheetByName(savedTask.targetSheetName);
+        if (!sh) {
+            sh = ss.insertSheet(savedTask.targetSheetName);
+        }
+        
+        // [QUAN TRỌNG] Đã XÓA đoạn code đọc existingRows ở đây để tránh lỗi Payload quá tải
+        
+        // 3. Gọi API (Chỉ gửi Task, không gửi dữ liệu cũ)
+        savedTask.timezone = timezone;
+        
+        // Gọi endpoint /execute
+        const executeResult = callApi_('/execute', { task: savedTask });
+
+        // 4. Xử lý kết quả trả về
+        // Server trả về 'newRowsData' (dữ liệu mới) thay vì 'finalRows' (tất cả dữ liệu)
+        if (executeResult.ok && executeResult.data.newRowsData) {
+            
+            // [THAY ĐỔI LỚN] Gọi hàm merge bên file MergeLogic.gs
+            // Hàm này sẽ thay thế đoạn code dài dòng xử lý Date và setValues cũ
+            if(executeResult.data.columnIds) mergePostLayout_(sh,executeResult.data,savedTask);
+            else mergeAndWriteData_(sh, executeResult.data.newRowsData, executeResult.data.headers, savedTask);
+
+            // 5. Format và làm mới UI (Giữ nguyên logic cũ)
+            if(!executeResult.data.columnIds) formatSheetForService(sh, savedTask, executeResult.data.headers.length);
+            sh.activate();
+
+            const finalData = callApi_('/init', {});
+            if (finalData.ok) {
+                finalData.data.message = executeResult.data.message || "Đã chạy và lưu Task thành công!";
+                finalData.data.hasApiKey = true;
+                finalData.data.pagesJson = finalData.data.tokensJson || "[]"; 
+                return finalData.data;
+            } else {
+                throw new Error("Không thể làm mới dữ liệu sau khi chạy task");
+            }
+        } else {
+            throw new Error(executeResult.error || 'API không trả về kết quả hợp lệ khi thực thi');
+        }
+    } catch (error) {
+        throw new Error("Thao tác thất bại. Vui lòng kiểm tra lại cấu hình Task. Lỗi: " + error.message);
+    }
+}
+
+function runExistingTask(task) {
+    if (task && ['fanpage_insights','post_insights'].includes(task.serviceType)) return dcStartFanpage_(task, false);
+    try {
+        // 1. Chuẩn bị Sheet (Giữ nguyên logic cũ)
+        const ss = SpreadsheetApp.getActiveSpreadsheet();
+        const timezone = ss.getSpreadsheetTimeZone();
+        let sh = ss.getSheetByName(task.targetSheetName);
+        if (!sh) {
+            sh = ss.insertSheet(task.targetSheetName);
+        }
+        
+        // [QUAN TRỌNG] Đã XÓA đoạn code đọc existingRows
+        
+        // 2. Gọi API
+        task.timezone = timezone;
+        
+        const result = callApi_('/execute', { task: task });
+
+        // 3. Xử lý kết quả
+        if (result.ok && result.data.newRowsData) {
+            
+            // [THAY ĐỔI LỚN] Uỷ quyền việc gộp dữ liệu cho hàm MergeLogic
+            if(result.data.columnIds) mergePostLayout_(sh,result.data,task);
+            else mergeAndWriteData_(sh, result.data.newRowsData, result.data.headers, task);
+
+            // 4. Format và làm mới UI (Giữ nguyên logic cũ)
+            if(!result.data.columnIds) formatSheetForService(sh, task, result.data.headers.length);
+            sh.activate();
+            
+            const finalData = callApi_('/init', {});
+            if (finalData.ok) {
+                finalData.data.message = result.data.message || "Chạy task thành công!";
+                finalData.data.hasApiKey = true;
+                finalData.data.pagesJson = finalData.data.tokensJson || "[]";
+                return finalData.data;
+            } else {
+                 throw new Error("Không thể làm mới dữ liệu sau khi chạy task");
+            }
+        } else {
+            throw new Error(result.error || 'API không trả về kết quả hợp lệ');
+        }
+    } catch (error) {
+        throw new Error("Thao tác thất bại. Vui lòng kiểm tra lại cấu hình Task. Lỗi: " + error.message);
+    }
+}
+
+function getRealLastRow_(sheet, keyColumn) {
+  const allValues = sheet.getRange(keyColumn + "1:" + keyColumn + sheet.getMaxRows()).getValues();
+  for (let i = allValues.length - 1; i >= 0; i--) {
+    if (allValues[i][0] !== "") {
+      return i + 1;
+    }
+  }
+  return 1;
+}
+
+function getDataSources() {
+  return callApi_('/manage', { resource: 'token', action: 'list' });
+}
+
+function addFacebookDataSource(newToken) {
+  callApi_('/manage', { resource: 'token', action: 'add', payload: { platform: 'facebook', newToken: newToken } });
+  
+  const result = callApi_('/init', {});
+
+  if (result.ok && result.data) {
+    result.data.message = "Thêm tài khoản thành công!";
+    result.data.hasApiKey = true;
+    return result.data;
+  } else {
+    throw new Error("Không thể làm mới dữ liệu");
+  }
+}
+
+function deleteDataSource(tokenId) {
+  const result = callApi_('/manage', { resource: 'token', action: 'delete', payload: { tokenId: tokenId } });
+  return result.data;
+}
+
+function refreshSelectedDataSources(sourceIds) {
+  // Đổi tên từ refreshSelectedTokens
+  const result = callApi_('/manage', { resource: 'token', action: 'refresh', payload: { token_ids: sourceIds } });
+  return result.data;
+}
+
+// --- Quản lý Key & Lập lịch ---
+function saveLicenseKey(key) {
+  PropertiesService.getUserProperties().setProperty('USER_API_KEY', key.trim());
+  try {
+    const result = callApi_('/init', {}); // Gọi init để xác thực
+    if (result.ok) {
+        return { 
+            message: "Đã kích hoạt key thành công!",
+            licenseInfo: result.data.licenseInfo
+        };
+    } else {
+      PropertiesService.getUserProperties().deleteProperty('USER_API_KEY');
+      throw new Error(result.error || 'Key không hợp lệ');
+    }
+  } catch(e) {
+      PropertiesService.getUserProperties().deleteProperty('USER_API_KEY');
+      throw new Error('Không thể xác thực Key: ' + e.message);
+  }
+}
+
+function getApiKey() {
+  return PropertiesService.getUserProperties().getProperty('USER_API_KEY') || '';
+}
+
+function deleteApiKey() {
+  PropertiesService.getUserProperties().deleteProperty('USER_API_KEY');
+  return 'Đã xóa API Key';
+}
+
+function updateMasterTrigger() {
+  const handlerFunction = 'executeScheduledTasks';
+  const triggers = ScriptApp.getProjectTriggers();
+  
+  const existingTrigger = triggers.find(t => t.getHandlerFunction() === handlerFunction);
+
+  if (!existingTrigger) {
+    ScriptApp.newTrigger(handlerFunction)
+      .timeBased()
+      .everyHours(1)
+      .create();
+    Logger.log('Đã tạo mới lịch chạy thành công.');
+  } else {
+    Logger.log('Thành công');
+  }
+}
+
+function executeScheduledTasks() {
+  try {
+    const result = callApi_('/manage', { resource: 'task', action: 'list' });
+    const tasks = JSON.parse(result.data.tasksJson || '[]');
+
+    if (tasks.length === 0) {
+      Logger.log('Không có task nào để chạy theo lịch.');
+      return;
+    }
+
+    const timezone = SpreadsheetApp.getActiveSpreadsheet().getSpreadsheetTimeZone();
+    const currentHour = parseInt(Utilities.formatDate(new Date(), timezone, 'HH'), 10);
+
+    Logger.log(`Đang kiểm tra lịch chạy cho giờ ${currentHour}:00`);
+
+    tasks.forEach(task => {
+      if (task.schedule && task.schedule.type === 'daily') {
+        const scheduledHour = parseInt(task.schedule.time.split(':')[0], 10);
+        if (scheduledHour === currentHour) {
+          Logger.log(`>>> Đang chạy task theo lịch: "${task.taskName}"`);
+          try {
+            runExistingTask(task);
+          } catch (e) {
+            Logger.log(`Lỗi khi chạy task theo lịch "${task.taskName}": ${e.message}`);
+          }
+        }
+      }
+    });
+  } catch (e) {
+    Logger.log(`Lỗi khi lấy danh sách task theo lịch: ${e.message}`);
+  }
+}
+
+function getTikTokAuthUrl() {
+  const result = callApi_('/manage', { resource: 'auth', action: 'get_tiktok_url' });
+  if (result.ok && result.data.authUrl) {
+    return result.data;
+  }
+  return null;
+}
+
+function getTikTokCreatorAuthUrl() {
+  const result = callApi_('/manage', { resource: 'auth', action: 'get_tiktok_creator_url' });
+  if (result.ok && result.data.authUrl) {
+    return result.data;
+  }
+  return null;
+}
+
+/*================================*
+ ||      SHEET FORMATTING      ||
+ *================================*/
+function formatSheetGeneric_(sheet, lastCol, numLeftCols, dateColIndex, autoResizeRow = false) {
+  const lastRow = sheet.getLastRow();
+  if (lastRow <= 1) return;
+
+  if (dateColIndex > 0) {
+    sheet.getRange(2, dateColIndex, lastRow - 1, 1).setNumberFormat('mm/dd/yyyy hh:mm:ss');
+  }
+
+  if (numLeftCols > 0) {
+    sheet.getRange(1, 1, lastRow, numLeftCols).setHorizontalAlignment('left');
+  }
+
+  if (lastCol > numLeftCols) {
+    sheet.getRange(1, numLeftCols + 1, lastRow, lastCol - numLeftCols).setHorizontalAlignment('center');
+  }
+
+  const startRow = 2;
+  const numRows = lastRow - 1;
+  sheet.setRowHeightsForced(startRow, numRows, sheet.getRowHeight(startRow));
+}
+
+
+function formatSheetForService(sheet, task, lastCol) {
+  if (!sheet) return;
+  
+  sheet.setFrozenRows(1);
+  sheet.getRange(1, 1, 1, lastCol).setFontWeight('bold');
+
+  switch (task.serviceType) {
+    case 'fanpage_insights':
+    case 'tiktok_profile_insights':
+      formatSheetGeneric_(sheet, lastCol, 4, 1, false);
+      break;
+
+    case 'post_insights':
+      formatSheetGeneric_(sheet, lastCol, 7, 3, true);
+      break;
+
+    case 'video_insights':
+    case 'tiktok_video_insights':
+      formatSheetGeneric_(sheet, lastCol, 6, 3, false);
+      break;
+    
+    case 'facebook_group_posts':
+      formatSheetGeneric_(sheet, lastCol, 10, 2, true);
+      break;
+
+    case 'facebook_ads':
+    case 'tiktok_ads':
+      const numDimCols = task.selectedDimensions ? task.selectedDimensions.length : 1;
+      formatSheetGeneric_(sheet, lastCol, numDimCols, -1, false);
+      break;
+      
+    default:
+      sheet.getRange(1, 1, sheet.getLastRow(), lastCol).setHorizontalAlignment('center');
+      break;
+  }
+}
+
+function formatDateForComparison_(val) {
+  if (!val) return '';
+  if (val instanceof Date) {
+    return Utilities.formatDate(val, Session.getScriptTimeZone(), 'yyyy-MM-dd');
+  }
+  const s = String(val);
+  return s.length >= 10 ? s.substring(0, 10) : s;
+}
+
+function createCompositeKey_(row, headers, task) {
+  const serviceType = task.serviceType;
+  
+  // Case 1: Posts/Videos (Key là ID cột đầu tiên)
+  if (['post_insights', 'video_insights', 'tiktok_video_insights', 'facebook_group_posts'].includes(serviceType)) {
+    return String(row[0] || '').trim();
+  }
+
+  // Case 2: Page/Profile Insights (Key là Date + Name)
+  if (['fanpage_insights', 'tiktok_profile_insights'].includes(serviceType)) {
+    const dateVal = formatDateForComparison_(row[0]);
+    const nameVal = String(row[1] || '').trim();
+    return dateVal + '|' + nameVal;
+  }
+
+  // Case 3: Ads (Logic thông minh dựa trên Dimensions)
+  if (['facebook_ads', 'tiktok_ads'].includes(serviceType)) {
+    const excludedKeywords = ['image', 'picture', 'url', 'permalink', 'link'];
+    const numMetrics = (task.selectedMetrics || []).length + (task.selectedActionMetrics || []).length;
+    
+    // Key được tạo từ tất cả các cột TRỪ Metrics và TRỪ các cột Ảnh/URL
+    // Giả định: Dimensions luôn nằm bên trái Metrics
+    const dimensionEndIndex = headers.length - numMetrics;
+    
+    let compositeKey = [];
+    for (let i = 0; i < dimensionEndIndex; i++) {
+       const headerName = headers[i];
+       const isImage = excludedKeywords.some(k => headerName.toLowerCase().includes(k));
+       
+       if (!isImage) {
+          if (headers[i] === 'Date') {
+             compositeKey.push(formatDateForComparison_(row[i]));
+          } else {
+             compositeKey.push(String(row[i] || '').trim());
+          }
+       }
+    }
+    return compositeKey.join('|');
+  }
+
+  // Default fallback
+  return String(row[0] || '').trim();
+}
+
+function mergeAndWriteData_(sheet, newRows, apiHeaders, task) {
+  if(task.serviceType==='post_insights' && PropertiesService.getDocumentProperties().getProperty('DC_POST_LAYOUT_'+sheet.getSheetId())) throw new Error('Sheet này dùng cấu hình cột Post. Bật lại cấu hình trong Task hoặc chọn Sheet đích mới.');
+  if (!newRows || newRows.length === 0) return;
+
+  const lastRow = getRealLastRow_(sheet, 'A');
+  
+  // Đây là số lượng cột từ API (ví dụ 26 cột từ A-Z)
+  const lastCol = apiHeaders.length; 
+  
+  // 1. Đọc dữ liệu cũ (nếu có)
+  let existingRows = [];
+  if (lastRow > 1) {
+    // Chỉ đọc đúng số cột của API, không đọc lan sang cột AA
+    existingRows = sheet.getRange(2, 1, lastRow - 1, lastCol).getValues();
+  }
+
+  // 2. Thực hiện Merge bằng Map
+  const dataMap = new Map();
+
+  // Load Old Data
+  existingRows.forEach(row => {
+    // Đảm bảo row chỉ lấy đúng số cột của API (đề phòng dữ liệu rác)
+    const normalizedRow = row.slice(0, lastCol); 
+    const key = createCompositeKey_(normalizedRow, apiHeaders, task);
+    if (key) dataMap.set(key, normalizedRow);
+  });
+
+  // Upsert New Data
+  newRows.forEach(row => {
+    const dateIdx = apiHeaders.indexOf('Date');
+    const createdTimeIdx = apiHeaders.indexOf('Created Time');
+    if (dateIdx !== -1 && row[dateIdx]) row[dateIdx] = new Date(row[dateIdx]);
+    if (createdTimeIdx !== -1 && row[createdTimeIdx]) row[createdTimeIdx] = new Date(row[createdTimeIdx]);
+
+    const key = createCompositeKey_(row, apiHeaders, task);
+    if (key) dataMap.set(key, row);
+  });
+
+  // 3. Chuyển thành mảng và sắp xếp
+  let finalRows = Array.from(dataMap.values());
+  
+  let sortColIndex = apiHeaders.indexOf('Date'); 
+  if (sortColIndex === -1) sortColIndex = apiHeaders.indexOf('Created Time');
+  
+  if (sortColIndex !== -1) {
+    finalRows.sort((a, b) => {
+      const dateA = new Date(a[sortColIndex]);
+      const dateB = new Date(b[sortColIndex]);
+      return dateB - dateA;
+    });
+  }
+
+  // 4. Ghi xuống Sheet
+  const actualLastRow = getRealLastRow_(sheet, 'A');
+if (!apiHeaders.length || finalRows.some(row => row.length !== lastCol)) throw new Error('Dữ liệu API không khớp số cột. Chưa xóa dữ liệu cũ.');
+  dcCapacity_(sheet, finalRows.length + 1, lastCol);
+  
+  // Ghi Header
+  sheet.getRange(1, 1, 1, lastCol).setValues([apiHeaders]);
+  
+  // Ghi Dữ liệu
+  if (finalRows.length > 0) {
+    sheet.getRange(2, 1, finalRows.length, lastCol).setValues(finalRows);
+  }
+  if (actualLastRow > finalRows.length + 1) sheet.getRange(finalRows.length + 2, 1, actualLastRow - finalRows.length - 1, lastCol).clearContent();
+}
+
+/* Fanpage background reports: bounded steps, persisted checkpoints, no Sidebar change. */
+const DC_REPORT_PREFIX_ = 'DC_REPORT_V1_';
+const DC_REPORT_HANDLER_ = 'continueDataCookerReports';
+
+function dcSaveJob_(job) {
+  const serialized=JSON.stringify(job);
+  if(Utilities.newBlob(serialized).getBytes().length>8500) throw new Error('Cấu hình lượt tải quá lớn để lưu tiến độ. Giảm số Fanpage trong một task.');
+  PropertiesService.getUserProperties().setProperty(DC_REPORT_PREFIX_ + job.id, serialized);
+}
+function dcJobs_() {
+  const props = PropertiesService.getUserProperties().getProperties();
+  return Object.keys(props).filter(k => k.indexOf(DC_REPORT_PREFIX_) === 0).map(k => JSON.parse(props[k]));
+}
+function dcEnsureWorker_() {
+  if (!ScriptApp.getProjectTriggers().some(t => t.getHandlerFunction() === DC_REPORT_HANDLER_)) {
+    ScriptApp.newTrigger(DC_REPORT_HANDLER_).timeBased().everyMinutes(1).create();
+  }
+}
+function dcCleanWorker_() {
+  if (!dcJobs_().some(j => j.status === 'running' || j.status === 'starting')) {
+    ScriptApp.getProjectTriggers().filter(t => t.getHandlerFunction() === DC_REPORT_HANDLER_).forEach(t => ScriptApp.deleteTrigger(t));
+  }
+}
+function dcStatus_(ss, job, message) {
+  let sheet = ss.getSheetByName('Data_Hong - Tiến độ');
+  if (!sheet) {
+    sheet = ss.insertSheet('Data_Hong - Tiến độ');
+    sheet.getRange(1,1,1,7).setValues([['Job ID','Task','Sheet đích','Trạng thái','Tiến độ','Cập nhật','Chi tiết']]);
+    sheet.setFrozenRows(1);
+    sheet.setColumnWidth(7,540);
+  }
+  const ids = sheet.getLastRow()>1 ? sheet.getRange(2,1,sheet.getLastRow()-1,1).getValues().map(r=>String(r[0])) : [];
+  const index = ids.indexOf(job.id);
+  const row = index<0 ? Math.max(2,sheet.getLastRow()+1) : index+2;
+  dcCapacity_(sheet,row,7);
+  sheet.getRange(row,1,1,7).setValues([[job.id,job.name,job.target,job.status,
+    job.part + '/' + (job.total || '?'),new Date(),message || job.error || '']]);
+}
+function dcCapacity_(sheet, rows, columns) {
+  if(rows>sheet.getMaxRows()) sheet.insertRowsAfter(sheet.getMaxRows(),rows-sheet.getMaxRows());
+  if(columns>sheet.getMaxColumns()) sheet.insertColumnsAfter(sheet.getMaxColumns(),columns-sheet.getMaxColumns());
+}
+function dcSnapshot_(message) {
+  const data=loadInitialData();
+  data.message=message;
+  return data;
+}
+function dcStartFanpage_(task, save) {
+  const lock=LockService.getUserLock();
+  if(!lock.tryLock(1000)) throw new Error('Một lượt tải đang xử lý. Xem tab Data_Hong - Tiến độ.');
+  try {
+    const ss=SpreadsheetApp.getActiveSpreadsheet();
+    const active=dcJobs_().find(j=>j.spreadsheetId===ss.getId() && j.target===task.targetSheetName && ['starting','running','paused'].includes(j.status));
+    if(active) return dcSnapshot_('Sheet này đã có lượt tải '+active.id+'. Xem Data_Hong - Tiến độ; dùng menu Tiếp tục nếu đang tạm dừng.');
+    const saved=save?callApi_('/manage',{resource:'task',action:'save',payload:task}).data.savedTask:task;
+    if(!saved || !saved.targetSheetName) throw new Error('Task thiếu Sheet đích.');
+    if(saved.targetSheetName==='Data_Hong - Tiến độ' || saved.targetSheetName.indexOf('DC_tmp_')===0) throw new Error('Tên Sheet dành riêng cho tiến độ tải.');
+    updateMasterTrigger();
+    dcEnsureWorker_(); // Ensure continuation is available before enqueuing the report.
+    const job={id:Utilities.getUuid(),spreadsheetId:ss.getId(),target:saved.targetSheetName,name:saved.taskName || '',
+      kind:['post_insights','fanpage_insights'].includes(saved.serviceType)?'post':'fanpage',postTask:['post_insights','fanpage_insights'].includes(saved.serviceType)?{postLayout:saved.postLayout}:null,part:0,total:0,status:'starting',failures:0,warningCount:0,task:Object.assign({},saved,{timezone:ss.getSpreadsheetTimeZone()})};
+    // Persist the start ID before HTTP. Lost responses reuse this ID, never start another charge.
+    dcSaveJob_(job);
+    dcStatus_(ss,job,'Đã xếp hàng. Fanpage và Post tải theo bài viết, có lưu tiến độ.');
+    return dcSnapshot_('Đã xếp hàng tải dữ liệu. Xem tab Data_Hong - Tiến độ; có thể đóng Sidebar. Không cần bấm Chạy lại.');
+  } finally {lock.releaseLock();}
+}
+
+function continueDataCookerReports() {
+  DC_FAST_INDEX_={};
+  const lock=LockService.getUserLock();
+  if(!lock.tryLock(1000)) return;
+  const started=Date.now();
+  try {
+    // One user worker; each Graph step has a 45-second backend deadline.
+    const jobs=dcJobs_().filter(j=>j.status==='running' || j.status==='starting');
+    for(const job of jobs) {
+      if(Date.now()-started>95000) break;
+      const ss=SpreadsheetApp.openById(job.spreadsheetId);
+      try {
+        if(job.status==='starting') {
+          const begin=callApi_('/report',{action:'start',jobId:job.id,task:job.task}).data;
+          let stage=ss.getSheetByName('DC_tmp_'+job.id);
+          if(!stage) stage=ss.insertSheet('DC_tmp_'+job.id);
+          dcCapacity_(stage,1,begin.headers.length);
+          stage.getRange(1,1,1,begin.headers.length).setValues([begin.headers]);
+          stage.hideSheet();
+          job.stageId=stage.getSheetId(); job.total=begin.total; job.explicit=begin.explicit;
+          if(job.kind==='post'){job.postTask={postLayout:begin.layout};job.schema={headers:begin.headers,columnIds:begin.columnIds,legacyColumns:begin.legacyColumns};}
+          job.status='running'; delete job.task;
+          dcSaveJob_(job);
+        }
+        while(job.part<job.total && Date.now()-started<95000) {
+          const apiStart=Date.now();
+          const reply=callApi_('/report',{action:job.kind==='post'?'stepBatch':'step',jobId:job.id,part:job.part}).data;
+          job.lastApiMs=Date.now()-apiStart;
+          const parts=job.kind==='post'?(reply.parts || []):reply.busy?[]:[reply];
+          if(!parts.length)break;
+          let expected=job.part;
+          parts.forEach(r=>{if(r.part!==expected||r.nextPart!==expected+1||!Array.isArray(r.newRowsData))throw new Error('Response không khớp phần tải đang chờ.');expected=r.nextPart;});
+          const sheetStart=Date.now();
+          const stage=ss.getSheetById(job.stageId);
+          if(!stage)throw new Error('Không tìm thấy Sheet dữ liệu tạm.');
+          if(job.kind==='post'){
+            if(parts.some(r=>JSON.stringify(r.columnIds)!==JSON.stringify(parts[0].columnIds)||JSON.stringify(r.headers)!==JSON.stringify(parts[0].headers)))throw new Error('Schema khác nhau trong lô.');
+            dcMergePostPart_(stage,Object.assign({},parts[0],{newRowsData:parts.flatMap(r=>r.newRowsData)}));
+          }else parts.forEach(r=>dcMergePart_(stage,r));
+          SpreadsheetApp.flush();job.lastSheetMs=Date.now()-sheetStart;
+          const last=parts[parts.length-1];job.part=last.nextPart;job.total=last.total;job.failures=0;
+          const warnings=parts.flatMap(r=>r.warnings || []);job.warningCount+=warnings.length;
+          job.lastWarning=warnings.slice(0,2).map(w=>[w.metric || w.field || 'Thông tin',w.objectId?'Bài '+w.objectId:'',w.message || ''].filter(Boolean).join(': ')).join('; ');
+          dcSaveJob_(job);
+          dcStatus_(ss,job,'Đã lưu phần '+job.part+'. API: '+job.lastApiMs+' ms; ghi Sheets: '+job.lastSheetMs+' ms. Cảnh báo: '+job.warningCount+'. '+job.lastWarning);
+          if(reply.deferredError)throw new Error(reply.deferredError);
+        }
+        if(job.part===job.total && Date.now()-started<95000) {
+          if(job.kind==='post') dcPublishPost_(ss,job); else dcPublish_(ss,job);
+          job.status='completed'; job.error='';
+          dcSaveJob_(job);
+          dcStatus_(ss,job,'Hoàn tất. Quota +1 cho toàn bộ lượt tải. Cảnh báo: '+job.warningCount+
+            '. Bản sao trước khi ghi: '+(job.backupName || 'Sheet mới')+'. '+(job.lastWarning || ''));
+          PropertiesService.getUserProperties().deleteProperty(DC_REPORT_PREFIX_+job.id);
+        }
+      } catch(error) {
+        job.failures=(job.failures || 0)+1;
+        job.error=String(error.message || error);
+        if(job.failures>=3) job.status='paused';
+        dcSaveJob_(job);
+        dcStatus_(ss,job,(job.status==='paused'?'Tạm dừng sau 3 lần lỗi. Sửa nguyên nhân rồi chọn menu Tiếp tục tải. ':'Sẽ thử lại từ phần đã lưu. ')+job.error);
+      }
+    }
+    dcCleanWorker_();
+  } finally {lock.releaseLock();}
+}
+
+function dcMergePart_(stage, part) {
+  if(!part.newRowsData.length) return;
+  const headers=stage.getRange(1,1,1,stage.getLastColumn()).getValues()[0];
+  const indexes=part.headers.map(h=>headers.indexOf(h));
+  if(indexes.some(i=>i<0)) throw new Error('Header phần tải khác với catalog đã lưu.');
+  const rows=stage.getLastRow()>1?stage.getRange(2,1,stage.getLastRow()-1,headers.length).getValues():[];
+  const map=new Map(rows.map(r=>[String(r[0])+'|'+String(r[2]),r]));
+  part.newRowsData.forEach(row=>{
+    if(row.length!==part.headers.length) throw new Error('Số cột phần tải không hợp lệ.');
+    const key=String(row[0])+'|'+String(row[2]);
+    const dest=map.get(key) || Array(headers.length).fill('N/A');
+    row.forEach((value,i)=>{ if(i<3 || (value!==null && value!=='' && value!=='N/A')) dest[indexes[i]]=value; });
+    map.set(key,dest);
+  });
+  const output=Array.from(map.values());
+  dcCapacity_(stage,output.length+1,headers.length);
+  stage.getRange(2,1,output.length,3).setNumberFormat('@');
+  stage.getRange(2,1,output.length,headers.length).setValues(output);
+}
+
+function dcPublish_(ss,job) {
+  const stage=ss.getSheetById(job.stageId);
+  if(!stage || stage.getLastRow()<2) throw new Error('Không có dữ liệu hoàn chỉnh để ghi.');
+  const all=stage.getRange(1,1,stage.getLastRow(),stage.getLastColumn()).getValues();
+  const rawHeaders=all.shift();
+  const keep=rawHeaders.map((_,i)=>i).filter(i=>i<3 || job.explicit || all.some(r=>r[i]!=='' && r[i]!==null && r[i]!=='N/A'));
+  const headers=keep.map(i=>rawHeaders[i]);
+  const newRows=all.map(row=>keep.map(i=>row[i]));
+  let target=ss.getSheetByName(job.target);
+  if(!target) target=ss.insertSheet(job.target);
+  if(!job.publishStarted) {
+    job.originalEmpty=target.getLastRow()===0;
+    job.publishStarted=true;
+    dcSaveJob_(job);
+  }
+  if(!job.backupName && !job.originalEmpty) {
+    const backupName='DC_backup_'+job.id;
+    let backup=ss.getSheetByName(backupName);
+    if(!backup) backup=target.copyTo(ss).setName(backupName);
+    job.backupName=backupName; dcSaveJob_(job);
+  }
+  // Read formulas as formulas and merge by header name, not by column position.
+  // Always replay publishing from the original backup, even after a partial write.
+  const source=job.originalEmpty?null:ss.getSheetByName(job.backupName);
+  if(!job.originalEmpty && !source) throw new Error('Bản sao trước khi ghi bị thiếu. Không tiếp tục ghi để tránh mất dữ liệu.');
+  const old=source && source.getLastRow()?source.getRange(1,1,source.getLastRow(),source.getLastColumn()).getValues():[];
+  const formulas=old.length?source.getRange(1,1,source.getLastRow(),source.getLastColumn()).getFormulas():[];
+  const oldHeaders=old.length?old[0]:[];
+  if(oldHeaders.length && (!oldHeaders.includes('Date') || !oldHeaders.includes('Page'))) throw new Error('Sheet đích không phải báo cáo Fanpage. Chọn Sheet đích khác.');
+  if(new Set(oldHeaders).size!==oldHeaders.length || oldHeaders.some(h=>!h)) throw new Error('Header Sheet đích trống hoặc trùng; cần chỉnh trước khi ghép dữ liệu.');
+  const finalHeaders=[...headers,...oldHeaders.filter(h=>!headers.includes(h))];
+  const names=new Map();
+  newRows.forEach(r=>{
+    const name=String(r[1]), id=String(r[2]);
+    if(!names.has(name)) names.set(name,id); else if(names.get(name)!==id) names.set(name,null);
+  });
+  const dateKey=v=>v instanceof Date?Utilities.formatDate(v,ss.getSpreadsheetTimeZone(),'yyyy-MM-dd'):String(v || '').slice(0,10);
+  const map=new Map();
+  const add=(row,sourceHeaders,isNew)=>{
+    const d=dateKey(row[sourceHeaders.indexOf('Date')]);
+    const name=String(row[sourceHeaders.indexOf('Page')] || '');
+    const idIndex=sourceHeaders.indexOf('Page ID');
+    const id=(idIndex>=0 && row[idIndex]) || names.get(name);
+    if(!id && names.has(name)) throw new Error('Nhiều Fanpage trùng tên với dữ liệu cũ; dùng Sheet đích mới để tránh ghép nhầm.');
+    const key=d+'|'+(id || 'legacy:'+name);
+    const dest=map.get(key) || Array(finalHeaders.length).fill('N/A');
+    row.forEach((v,i)=>{if(!isNew || (v!=='' && v!==null && v!=='N/A')) dest[finalHeaders.indexOf(sourceHeaders[i])]=v;});
+    dest[0]=d; dest[1]=name; dest[2]=id || '';
+    map.set(key,dest);
+  };
+  old.slice(1).forEach((r,i)=>{if(r.some(v=>v!=='')) add(r.map((v,c)=>formulas[i+1][c] || v),oldHeaders,false);});
+  newRows.forEach(r=>add(r,headers,true));
+  const rows=Array.from(map.values()).sort((a,b)=>String(b[0]).localeCompare(String(a[0])) || String(a[2]).localeCompare(String(b[2])));
+  const previousRows=target.getLastRow();
+  dcCapacity_(target,rows.length+1,finalHeaders.length);
+  // Never clear old data first. Backup exists; checkpoint remains until writing succeeds.
+  target.getRange(1,1,1,finalHeaders.length).setValues([finalHeaders]);
+  if(rows.length) {
+    target.getRange(2,1,rows.length,3).setNumberFormat('@');
+    target.getRange(2,1,rows.length,finalHeaders.length).setValues(rows);
+  }
+  if(previousRows>rows.length+1) target.getRange(rows.length+2,1,previousRows-rows.length-1,finalHeaders.length).clearContent();
+  target.setFrozenRows(1);
+  target.getRange(1,1,1,finalHeaders.length).setFontWeight('bold');
+  SpreadsheetApp.flush();
+}
+
+function resumeDataCookerReports() {
+  const lock=LockService.getUserLock(); lock.waitLock(5000);
+  try {
+    const ss=SpreadsheetApp.getActiveSpreadsheet();
+    dcJobs_().filter(j=>j.spreadsheetId===ss.getId() && j.status==='paused').forEach(job=>{
+      job.status=job.task?'starting':'running'; job.failures=0; dcSaveJob_(job);
+      dcStatus_(ss,job,'Đã tiếp tục từ phần đã lưu.');
+    });
+    if(dcJobs_().some(j=>j.status==='running' || j.status==='starting')) dcEnsureWorker_();
+  } finally {lock.releaseLock();}
+}
+function cancelDataCookerReport() {
+  const ss=SpreadsheetApp.getActiveSpreadsheet(), sheet=ss.getActiveSheet();
+  if(sheet.getName()!=='Data_Hong - Tiến độ' || sheet.getActiveRange().getRow()<2) throw new Error('Chọn một dòng trong tab Data_Hong - Tiến độ để dừng.');
+  const id=String(sheet.getRange(sheet.getActiveRange().getRow(),1).getValue());
+  const lock=LockService.getUserLock(); lock.waitLock(5000);
+  try {
+    const job=dcJobs_().find(j=>j.id===id && j.spreadsheetId===ss.getId());
+    if(!job || job.status==='completed') throw new Error('Không có lượt tải đang chờ ở dòng này.');
+    callApi_('/report',{action:'cancel',jobId:id});
+    job.status='cancelled'; dcSaveJob_(job); dcStatus_(ss,job,'Đã dừng; dữ liệu tạm được giữ. Nếu backend đã hoàn tất trước khi dừng, quota đã được tính.');
+    PropertiesService.getUserProperties().deleteProperty(DC_REPORT_PREFIX_+job.id);
+    dcCleanWorker_();
+  } finally {lock.releaseLock();}
+}
+
+function mergePostLayout_(sheet, result, task) {
+  const ids=result.columnIds,headers=result.headers,rows=result.newRowsData;
+  if(!Array.isArray(ids) || ids.length!==headers.length || new Set(ids).size!==ids.length || !ids.includes('post_id')) throw new Error('Cấu hình cột Post không hợp lệ.');
+  if(!Array.isArray(rows) || rows.some(r=>r.length!==ids.length || !r[ids.indexOf('post_id')])) throw new Error('Dữ liệu Post thiếu ID hoặc sai số cột.');
+  const props=PropertiesService.getDocumentProperties(),key='DC_POST_LAYOUT_'+sheet.getSheetId();
+  const saved=JSON.parse(props.getProperty(key) || 'null');
+  const oldRows=sheet.getLastRow()>0?sheet.getRange(1,1,sheet.getLastRow(),sheet.getLastColumn()).getValues():[];
+  const oldHeaders=oldRows.length?oldRows.shift():[];
+  let oldIds=[];
+  if(oldHeaders.length) {
+    if(saved && JSON.stringify(saved.headers)===JSON.stringify(oldHeaders)) oldIds=saved.ids;
+    else if(!saved) {
+      oldIds=oldHeaders.map(h=>result.legacyColumns[h]);
+      if(oldIds.some(id=>!id) || new Set(oldIds).size!==oldIds.length) throw new Error('Sheet cũ có cột tự sửa/chưa nhận diện. Hãy chọn Sheet đích mới cho cấu hình Post này.');
+    } else throw new Error('Header Sheet đã bị sửa ngoài Task. Khôi phục header hoặc chọn Sheet đích mới để tránh lệch cột.');
+    if(!oldIds.includes('post_id'))throw new Error('Sheet cũ thiếu Post ID.');
+  }
+  const map=new Map();
+  oldRows.forEach(row=>{
+    const id=String(row[oldIds.indexOf('post_id')] || '');if(!id)return;
+    map.set(id,ids.map(k=>oldIds.includes(k)?row[oldIds.indexOf(k)]:'N/A'));
+  });
+  rows.forEach(row=>map.set(String(row[ids.indexOf('post_id')]),row.slice()));
+  const output=Array.from(map.values()),dateIndex=ids.indexOf('created');
+  if(dateIndex>=0)output.sort((a,b)=>(Date.parse(b[dateIndex]) || 0)-(Date.parse(a[dateIndex]) || 0));
+  if(oldHeaders.length) {
+    const backup=sheet.copyTo(sheet.getParent());
+    backup.setName('DC_post_backup_'+Utilities.getUuid());
+  }
+  dcCapacity_(sheet,output.length+1,headers.length);
+  sheet.getRange(1,ids.indexOf('post_id')+1,output.length+1,1).setNumberFormat('@');
+  // Header and values use one matrix; a column title never controls metric identity.
+  sheet.getRange(1,1,output.length+1,headers.length).setValues([headers,...output]);
+  if(oldHeaders.length>headers.length)sheet.getRange(1,headers.length+1,Math.max(output.length+1,oldRows.length+1),oldHeaders.length-headers.length).clearContent();
+  if(oldRows.length>output.length)sheet.getRange(output.length+2,1,oldRows.length-output.length,headers.length).clearContent();
+  SpreadsheetApp.flush();
+  props.setProperty(key,JSON.stringify({ids,headers}));
+  sheet.setFrozenRows(1);sheet.getRange(1,1,1,headers.length).setFontWeight('bold');
+}
+
+// Hashtags run locally on the downloaded part, before it is checkpointed.
+let DC_FAST_INDEX_={};
+function dcMergePostPart_(stage,result){
+ if(!result.newRowsData.length)return;
+ const key=stage.getParent().getId()+':'+stage.getSheetId();
+ try{
+  let cache=DC_FAST_INDEX_[key];
+  if(!cache){
+   const headers=stage.getRange(1,1,1,stage.getLastColumn()).getValues()[0];
+   if(JSON.stringify(headers)!==JSON.stringify(result.headers))throw new Error('Schema Post thay đổi giữa lượt tải.');
+   const col=result.columnIds.indexOf('post_id');if(col<0)throw new Error('Thiếu Post ID.');
+   const last=stage.getLastRow();
+   const ids=last>1?stage.getRange(2,col+1,last-1,1).getDisplayValues().map(r=>String(r[0])):[];
+   cache={headers,col,next:Math.max(2,last+1),ids:new Map(ids.map((id,i)=>[id,i+2]))};DC_FAST_INDEX_[key]=cache;
+  }
+  if(JSON.stringify(cache.headers)!==JSON.stringify(result.headers))throw new Error('Schema thay đổi.');
+  const updates=new Map();
+  result.newRowsData.forEach(row=>{
+   if(row.length!==result.headers.length||!row[cache.col])throw new Error('Hàng thiếu ID hoặc sai số cột.');
+   const id=String(row[cache.col]);let pos=cache.ids.get(id);
+   if(!pos){pos=cache.next++;cache.ids.set(id,pos);}
+   updates.set(pos,row);
+  });
+  const positions=Array.from(updates.keys()).sort((a,b)=>a-b);
+  for(let i=0;i<positions.length;){
+   const start=positions[i],rows=[updates.get(start)];let j=i+1;
+   while(j<positions.length && positions[j]===positions[j-1]+1){rows.push(updates.get(positions[j]));j++;}
+   dcCapacity_(stage,start+rows.length-1,result.headers.length);
+   stage.getRange(start,cache.col+1,rows.length,1).setNumberFormat('@');
+   stage.getRange(start,1,rows.length,result.headers.length).setValues(rows);
+   i=j;
+  }
+ }catch(error){delete DC_FAST_INDEX_[key];throw error;}
+}
+
+function dcPublishPost_(ss,job){
+ const stage=ss.getSheetById(job.stageId);
+ if(!stage)throw new Error('Thiếu sheet tạm Post.');
+ const rows=stage.getLastRow()>1?stage.getRange(2,1,stage.getLastRow()-1,job.schema.headers.length).getValues():[];
+ let target=ss.getSheetByName(job.target);if(!target)target=ss.insertSheet(job.target);
+ mergePostLayout_(target,Object.assign({},job.schema,{newRowsData:rows}),job.postTask);
+}
