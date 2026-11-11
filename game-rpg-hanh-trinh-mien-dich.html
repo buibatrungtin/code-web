@@ -1,0 +1,991 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Option 10 · Game nhập vai “Hành Trình Miễn Dịch cùng Mimo”</title>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#EEF1F6;font-family:'Be Vietnam Pro',Arial,sans-serif;color:#2B3140}
+.sa-top{background:#FFFFFF;border-bottom:1px solid #DDE2EC;padding:14px 24px}
+.sa-top h1{margin:0;font-size:20px;color:#0B2A8A}
+.sa-top p{margin:3px 0 0;font-size:13px;color:#5B6472}
+.sa-main{max-width:1328px;margin:0 auto;padding:18px 24px 60px}
+/* RP-CSS-START */
+.rp-root{font-family:'Be Vietnam Pro',Arial,sans-serif;color:#2B3140}
+.rp-root *{box-sizing:border-box}
+.rp-ctrl{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin:0 0 14px;padding:10px 14px;background:#FFFFFF;border:1px solid #DDE2EC;border-radius:12px;font-size:13px}
+.rp-ctrl b{color:#3D4451;font-size:12.5px}
+.rp-segs{display:flex;gap:4px;flex-wrap:wrap}
+.rp-segs button{border:1px solid #C3CBDB;background:#FFFFFF;color:#2B3140;border-radius:16px;padding:6px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.rp-segs button[aria-pressed=true]{background:#1A3C9C;border-color:#1A3C9C;color:#FFFFFF}
+.rp-ctrl .rp-reset{border:1px dashed #B42318;background:#FFFFFF;color:#B42318;border-radius:16px;padding:6px 12px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.rp-scaler{width:100%}
+.rp-scaled{transform-origin:top left;border-radius:10px;overflow:hidden;box-shadow:0 8px 30px rgba(11,42,138,.14);background:#FFFFFF}
+.rp-phone-row{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap}
+.rp-phone{width:406px;padding:8px;border-radius:36px;background:#1B1F2A;flex-shrink:0}
+.rp-phone-in{width:390px;height:844px;border-radius:28px;overflow:hidden;position:relative}
+.rp-notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;margin-top:16px}
+.rp-note{background:#FFFFFF;border:1px solid #DDE2EC;border-radius:12px;padding:14px 18px;font-size:13.5px;line-height:1.6}
+.rp-note h3{margin:0 0 6px;font-size:15px;color:#0B2A8A}
+.rp-note ul{margin:0;padding-left:18px}
+
+/* trang bài viết giả lập */
+.rpp{position:relative;overflow:hidden;background:#FFFFFF;display:flex;flex-direction:column}
+.rpp-pc{width:1280px;height:860px}.rpp-mb{width:390px;height:844px}
+.rpp-head{height:68px;background:#0B2A8A;color:#FFFFFF;display:flex;align-items:center;justify-content:space-between;padding:0 90px;flex-shrink:0}
+.rpp-mb .rpp-head{height:56px;padding:0 16px}
+.rpp-logo{font-weight:700;font-size:20px}.rpp-mb .rpp-logo{font-size:16px}
+.rpp-hot{display:flex;gap:20px;font-size:14px}.rpp-hot b{color:#FFC20E}
+.rpp-scroll{flex:1;min-height:0;overflow-y:auto}
+.rpp-wrap{max-width:1100px;margin:0 auto;padding:24px 0 80px;display:flex;gap:40px;align-items:flex-start}
+.rpp-mb .rpp-scroll{padding:14px 16px 100px}
+.rpp-art{flex:1;min-width:0}
+.rpp-art h1{margin:0 0 10px;font-size:26px;line-height:1.3;color:#1A3C9C}.rpp-mb .rpp-art h1{font-size:20px}
+.rpp-art h2{font-size:19px;color:#1A3C9C;margin:22px 0 8px}
+.rpp-art p{margin:0 0 12px;font-size:15px;line-height:1.7}
+.rpp-hero{height:250px;border-radius:8px;background:#E8EDF8;display:flex;align-items:center;justify-content:center;color:#5B6472;font-size:14px;margin:4px 0 14px}
+.rpp-mb .rpp-hero{height:170px}
+.rpp-side{width:330px;flex-shrink:0;position:sticky;top:16px}
+.rpl{border:2px solid #3B1F7A;border-radius:18px;background:radial-gradient(circle at 50% 30%,#5A3CC8 0,#2A1660 70%);padding:16px 18px 18px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;box-shadow:0 5px 0 #1C0F45;color:#FFFFFF;position:relative;overflow:hidden}
+.rpl:before{content:'';position:absolute;inset:-40%;background:conic-gradient(from 0deg,transparent 0 20%,rgba(255,215,90,.18) 25%,transparent 30% 70%,rgba(255,215,90,.18) 75%,transparent 80%);animation:rpSpin 9s linear infinite}
+.rpl>*{position:relative}
+.rpl-k{display:inline-block;background:#FFC20E;color:#2A1660;font-size:11.5px;font-weight:800;border-radius:10px;padding:3px 10px;letter-spacing:.6px}
+.rpl-t{font-size:20px;font-weight:800;line-height:1.2;letter-spacing:.5px}
+.rpl-art{display:flex;align-items:flex-end;justify-content:center;gap:4px;font-size:38px;line-height:1}
+.rpl-art canvas{width:110px;height:96px}
+.rpl-d{font-size:13px;line-height:1.5;color:#E3DDFF}
+.rpl-el{display:flex;gap:6px;font-size:18px}
+.rp-fab{position:absolute;right:14px;bottom:18px;z-index:5;display:flex;align-items:center;gap:8px;height:56px;padding:0 18px 0 8px;border:none;border-radius:28px;background:#5A3CC8;color:#FFFFFF;font:inherit;font-weight:800;font-size:14px;box-shadow:0 8px 20px rgba(90,60,200,.45);cursor:pointer}
+.rp-fab[hidden]{display:none}
+.rp-fab i{font-style:normal;width:42px;height:42px;border-radius:21px;background:#FFC20E;display:flex;align-items:center;justify-content:center;font-size:22px}
+
+/* nút chung */
+.rp-btn{min-height:44px;border-radius:12px;border:none;padding:0 16px;font:inherit;font-size:14.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .1s,filter .15s}
+.rp-btn:active{transform:translateY(2px)}
+.rp-btn:disabled{opacity:.45;cursor:not-allowed;filter:grayscale(.5)}
+.rp-btn:focus-visible,.rp-act:focus-visible,.rp-node:focus-visible,.rp-item:focus-visible,.rp-chest:focus-visible,.rp-tf:focus-visible,.rp-choice:focus-visible{outline:3px solid #FFC20E;outline-offset:2px}
+.rp-gold{background:linear-gradient(180deg,#FFD84D,#F0A800);color:#3A2400;box-shadow:0 4px 0 #A87400}
+.rp-gold:hover{filter:brightness(1.06)}
+.rp-pur{background:#5A3CC8;color:#FFFFFF;box-shadow:0 4px 0 #34207F}
+.rp-blue{background:#1A3C9C;color:#FFFFFF;box-shadow:0 4px 0 #0B2A8A}
+.rp-ghost{background:rgba(255,255,255,.1);color:#FFFFFF;border:1.5px solid rgba(255,255,255,.35)}
+.rp-wghost{background:#FFFFFF;color:#1A3C9C;border:1.5px solid #C3CBDB}
+.rp-big{min-height:54px;font-size:17px;padding:0 30px;border-radius:14px;letter-spacing:.5px}
+.rp-pulse{animation:rpPulse 1.6s ease-in-out .5s infinite}
+.rp-tag{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:800;border-radius:7px;padding:2px 7px;color:#FFFFFF;white-space:nowrap}
+
+/* Mimo */
+.rp-mimo svg{width:100%;height:auto;display:block;overflow:visible}
+.rp-mimo .rpf{display:none}
+.rp-mimo[data-mood=happy] .rpf-happy,.rp-mimo[data-mood=sick] .rpf-sick,.rp-mimo[data-mood=worried] .rpf-worried,.rp-mimo[data-mood=party] .rpf-party,.rp-mimo[data-mood=dizzy] .rpf-dizzy,.rp-mimo[data-mood=fight] .rpf-fight{display:inline}
+.rp-bot{animation:rpBob 2.6s ease-in-out infinite;transform-box:view-box;transform-origin:80px 150px}
+
+/* cửa sổ */
+.rp-back{position:absolute;inset:0;z-index:40;border:none;background:rgba(15,8,40,.62);cursor:pointer;animation:rpFade .25s ease}
+.rp-win{position:absolute;z-index:41;background:#1C1240;color:#FFFFFF;display:flex;flex-direction:column;overflow:hidden;outline:none;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.rp-win.pc{left:50%;top:50%;width:980px;height:770px;margin:-385px 0 0 -490px;border-radius:24px;animation:rpWinIn .45s cubic-bezier(.2,.9,.3,1.15)}
+.rp-win.mb{left:0;right:0;bottom:0;top:8px;border-radius:22px 22px 0 0;animation:rpSheetIn .4s ease}
+.rp-top{display:flex;align-items:center;gap:10px;padding:9px 12px 9px 16px;background:linear-gradient(90deg,#2A1660,#5A3CC8 60%,#C2410C);flex-shrink:0;z-index:30;position:relative}
+.rp-brand{flex:1;min-width:0;display:flex;flex-direction:column}
+.rp-brand b{font-size:15px;letter-spacing:2px}
+.rp-brand span{font-size:12px;opacity:.9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rp-lv{display:flex;flex-direction:column;align-items:flex-end;gap:3px;font-size:12px;font-weight:700}
+.rp-xp{width:110px;height:7px;border-radius:4px;background:rgba(255,255,255,.2);overflow:hidden}
+.rp-xp b{display:block;height:100%;background:linear-gradient(90deg,#FFD84D,#FF9F1C);transition:width .8s ease}
+.rp-icb{width:40px;height:40px;border:none;border-radius:20px;background:rgba(255,255,255,.16);color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;font-size:16px}
+.rp-icb:hover{background:rgba(255,255,255,.3)}
+.rp-main{flex:1;min-height:0;position:relative;overflow:hidden}
+.rp-scr{position:absolute;inset:0;display:flex;flex-direction:column;animation:rpFade .3s ease}
+.rp-scroll{overflow-y:auto}
+
+/* bản đồ */
+.rp-map{flex:1;min-height:0;position:relative;background:radial-gradient(circle at 20% 80%,#3D2A8C 0,transparent 45%),radial-gradient(circle at 80% 20%,#7A2E6B 0,transparent 45%),linear-gradient(180deg,#22164F,#140C33);overflow:hidden}
+.rp-stars{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 20px 30px,#FFFFFF,transparent),radial-gradient(1.5px 1.5px at 120px 80px,#FFE38A,transparent),radial-gradient(1px 1px at 200px 150px,#FFFFFF,transparent),radial-gradient(1.5px 1.5px at 300px 40px,#BFD4FF,transparent);background-size:340px 200px;opacity:.6;animation:rpTwinkle 4s ease-in-out infinite}
+.rp-path{position:absolute;inset:0;width:100%;height:100%}
+.rp-path path{fill:none;stroke:#FFD84D;stroke-width:5;stroke-dasharray:4 14;stroke-linecap:round;opacity:.7;animation:rpDash 1.2s linear infinite}
+.rp-node{position:absolute;transform:translate(-50%,-50%);width:150px;border:none;background:none;color:#FFFFFF;font:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;padding:0}
+.rp-node .orb{position:relative;width:104px;height:104px;border-radius:52px;background:radial-gradient(circle at 40% 35%,rgba(255,255,255,.25),rgba(0,0,0,.25));border:4px solid var(--c);box-shadow:0 0 0 6px rgba(255,255,255,.06),0 0 24px var(--c);display:flex;align-items:center;justify-content:center;animation:rpFloat 3s ease-in-out infinite}
+.rp-node .orb canvas{width:92px;height:92px}
+.rp-node.locked .orb{filter:grayscale(1) brightness(.5);box-shadow:none}
+.rp-node .lock{position:absolute;font-size:30px}
+.rp-node .nm{font-size:13px;font-weight:800;text-shadow:0 2px 0 rgba(0,0,0,.4)}
+.rp-node .st{font-size:14px;letter-spacing:2px;color:#FFD84D}
+.rp-node .here{background:#12B76A;color:#FFFFFF;font-size:10px;font-weight:800;border-radius:8px;padding:2px 6px;white-space:nowrap}
+.rp-node.sel .orb{border-width:6px;box-shadow:0 0 0 8px rgba(255,216,77,.35),0 0 30px var(--c)}
+.rp-avatar{position:absolute;width:64px;transform:translate(-50%,-110%);transition:left .7s cubic-bezier(.4,1.4,.5,1),top .7s cubic-bezier(.4,1.4,.5,1);z-index:3;pointer-events:none}
+.rp-mapbar{display:flex;gap:8px;padding:10px 12px;background:#140C33;flex-shrink:0;flex-wrap:wrap}
+.rp-mapbar .rp-btn{flex:1;min-width:120px}
+.rp-info{position:absolute;right:16px;top:16px;width:310px;background:rgba(20,12,51,.92);border:2px solid #5A3CC8;border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:8px;z-index:4;animation:rpPop .3s ease}
+.rp-win.mb .rp-info{left:10px;right:10px;top:auto;bottom:10px;width:auto}
+.rp-info h4{margin:0;font-size:18px}
+.rp-info p{margin:0;font-size:12.5px;line-height:1.5;color:#D9D2FF}
+.rp-info .row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:12.5px}
+.rp-tip{font-size:12.5px;line-height:1.5;background:rgba(255,216,77,.12);border:1px solid rgba(255,216,77,.5);border-radius:10px;padding:8px 10px;color:#FFE9A8}
+.rp-tip.ok{background:rgba(18,183,106,.15);border-color:rgba(18,183,106,.6);color:#B7F5D6}
+.rp-cycle{position:absolute;left:16px;bottom:16px;background:rgba(20,12,51,.85);border:1px solid rgba(255,255,255,.2);border-radius:14px;padding:8px 10px;font-size:11.5px;z-index:2}
+.rp-win.mb .rp-cycle{display:none}
+.rp-cycle b{display:block;margin-bottom:4px;color:#FFD84D}
+
+/* túi đồ / album */
+.rp-panel{flex:1;min-height:0;overflow-y:auto;padding:16px;background:linear-gradient(180deg,#22164F,#140C33)}
+.rp-h2{margin:0 0 10px;font-size:20px;display:flex;align-items:center;gap:10px}
+.rp-eq{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:10px;margin-bottom:14px}
+.rp-win.mb .rp-eq{grid-template-columns:1fr 1fr}
+.rp-slot{background:rgba(255,255,255,.06);border:2px solid var(--rc,#5A3CC8);border-radius:14px;padding:10px;display:flex;gap:10px;align-items:center;min-height:72px}
+.rp-slot .ic{font-size:30px;width:46px;height:46px;border-radius:12px;background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rp-slot small{display:block;font-size:11px;color:#BDB3F0;font-weight:700;letter-spacing:.5px}
+.rp-slot b{font-size:14px}
+.rp-statbox{background:rgba(255,255,255,.06);border-radius:14px;padding:10px;font-size:12.5px;display:grid;grid-template-columns:1fr 1fr;gap:4px 10px}
+.rp-win.mb .rp-statbox{grid-column:1/-1}
+.rp-statbox b{color:#FFD84D}
+.rp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.rp-item{position:relative;text-align:left;background:linear-gradient(160deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border:2px solid var(--rc);border-radius:14px;padding:10px;color:#FFFFFF;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:4px;min-height:118px}
+.rp-item:hover{transform:translateY(-2px)}
+.rp-item .ic{font-size:30px}
+.rp-item b{font-size:13.5px;line-height:1.3}
+.rp-item small{font-size:11.5px;color:#D9D2FF;line-height:1.4}
+.rp-item .cnt{position:absolute;top:8px;right:10px;font-weight:800;font-size:13px}
+.rp-item .on{position:absolute;top:8px;right:8px;background:#12B76A;font-size:10px;font-weight:800;border-radius:6px;padding:1px 6px}
+.rp-item.l{box-shadow:0 0 18px rgba(240,180,41,.5)}
+.rp-card{background:linear-gradient(160deg,#FFFFFF,#EEF2FF);color:#2B3140;border-radius:14px;padding:12px;border:3px solid var(--c);min-height:150px;display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.5}
+.rp-card.lock{background:rgba(255,255,255,.06);color:#BDB3F0;border-style:dashed;align-items:center;justify-content:center;text-align:center}
+.rp-card b{color:#0B2A8A}
+.rp-card small{color:#1A3C9C;font-weight:600}
+
+/* trận đấu */
+.rp-arena{position:relative;flex:1;min-height:0;overflow:hidden;background:var(--bg)}
+.rp-arena:after{content:'';position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,transparent,rgba(0,0,0,.35));pointer-events:none}
+.rp-floor{position:absolute;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,.18),transparent 70%)}
+.rp-bosscv{position:absolute;right:9%;top:6%;width:300px;height:262px;z-index:2}
+.rp-hero{position:absolute;left:12%;bottom:6%;width:150px;z-index:3}
+.rp-hero .wpn{position:absolute;right:-12px;bottom:34px;width:52px;height:52px;border-radius:26px;background:radial-gradient(circle,#FFFFFF,var(--c));border:3px solid #FFFFFF;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 0 16px var(--c)}
+.rp-hero.dash{animation:rpDash2 .5s cubic-bezier(.3,.8,.4,1)}
+.rp-hero.hurt{animation:rpHurt .45s ease}
+.rp-hero.guard:before{content:'';position:absolute;inset:-14px;border-radius:50%;border:4px solid #A97C50;box-shadow:0 0 20px #A97C50,inset 0 0 20px rgba(169,124,80,.5);animation:rpPulse2 1.2s ease-in-out infinite}
+.rp-hero.dodge{opacity:.85;filter:drop-shadow(0 0 10px #3CC88A)}
+.rp-hp{position:absolute;z-index:4;background:rgba(15,8,40,.82);border:2px solid rgba(255,255,255,.25);border-radius:14px;padding:8px 10px;min-width:250px;backdrop-filter:blur(3px)}
+.rp-hp.boss{left:3%;top:5%}
+.rp-hp.me{right:3%;bottom:6%}
+.rp-hp .nm{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:800;margin-bottom:5px}
+.rp-bar{position:relative;height:12px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
+.rp-bar .gh{position:absolute;left:0;top:0;bottom:0;background:#FFFFFF;opacity:.7;transition:width .9s ease .25s}
+.rp-bar .fg{position:absolute;left:0;top:0;bottom:0;transition:width .3s ease,background .3s}
+.rp-bar.en .fg{background:linear-gradient(90deg,#4FD1FF,#3B82F6)}
+.rp-bar.ul .fg{background:linear-gradient(90deg,#FFD84D,#FF7A45)}
+.rp-hpn{display:flex;justify-content:space-between;font-size:11.5px;margin-top:3px;color:#D9D2FF;font-variant-numeric:tabular-nums}
+.rp-sts{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;min-height:20px}
+.rp-sts span{font-size:11px;font-weight:700;border-radius:6px;padding:1px 6px;background:rgba(255,255,255,.14)}
+.rp-charge{position:absolute;right:12%;top:3%;z-index:5;background:#B42318;color:#FFFFFF;font-weight:800;font-size:13px;border-radius:10px;padding:5px 10px;animation:rpBlink .7s ease-in-out infinite}
+.rp-fx{position:absolute;inset:0;pointer-events:none;z-index:8;overflow:hidden}
+.rp-num{position:absolute;font-weight:800;font-size:30px;-webkit-text-stroke:1.5px rgba(0,0,0,.6);white-space:nowrap;pointer-events:none;text-align:center}
+.rp-num small{display:block;font-size:13px;-webkit-text-stroke:0;text-shadow:0 1px 2px #000}
+.rp-proj{position:absolute;width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px}
+.rp-pt{position:absolute;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%}
+.rp-cut{position:absolute;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.rp-cut div{width:120%;padding:20px 0;text-align:center;font-size:40px;font-weight:800;letter-spacing:2px;color:#FFFFFF;text-shadow:0 4px 0 rgba(0,0,0,.35);transform:skewY(-6deg)}
+.rp-flash{position:absolute;inset:0;z-index:19;pointer-events:none;opacity:0}
+.rp-ctl{flex-shrink:0;background:#140C33;border-top:2px solid #5A3CC8;padding:10px 12px 12px;display:flex;flex-direction:column;gap:8px}
+.rp-log{min-height:40px;font-size:14px;line-height:1.45;background:rgba(255,255,255,.06);border-radius:10px;padding:8px 12px}
+.rp-log b{color:#FFD84D}
+.rp-bars{display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11.5px;font-weight:700}
+.rp-bars label{display:flex;flex-direction:column;gap:3px}
+.rp-acts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.rp-win.mb .rp-acts{grid-template-columns:repeat(3,minmax(0,1fr))}
+.rp-act{min-height:58px;border-radius:14px;border:2px solid rgba(255,255,255,.18);background:linear-gradient(180deg,#3A2A86,#2A1C66);color:#FFFFFF;font:inherit;font-weight:800;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:4px;line-height:1.2;text-align:center}
+.rp-act i{font-style:normal;font-size:20px}
+.rp-act small{font-weight:600;font-size:10.5px;opacity:.85}
+.rp-act:hover:not(:disabled){border-color:#FFD84D;transform:translateY(-2px)}
+.rp-act:disabled{opacity:.4;cursor:not-allowed}
+.rp-act.ult{background:linear-gradient(135deg,#FF9F1C,#E0464E,#7A2EFF);border-color:#FFD84D;animation:rpUlt 1s ease-in-out infinite}
+.rp-sub{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.rp-sub .rp-act{flex-direction:row;justify-content:flex-start;gap:10px;text-align:left;padding:8px 12px}
+.rp-sub .rp-act span{display:flex;flex-direction:column;gap:2px}
+
+/* hộp thoại câu hỏi */
+.rp-modal{position:absolute;inset:0;z-index:30;background:rgba(10,5,30,.8);display:flex;align-items:center;justify-content:center;padding:16px;animation:rpFade .2s ease}
+.rp-q{position:relative;background:#FFFFFF;color:#2B3140;border:3px solid #FFC20E;border-radius:20px;padding:18px 20px;max-width:540px;width:100%;box-shadow:0 10px 0 #C99300,0 20px 40px rgba(0,0,0,.4);animation:rpSlam .45s cubic-bezier(.3,1.5,.5,1)}
+.rp-q.red{border-color:#E0464E;box-shadow:0 10px 0 #A1282F,0 20px 40px rgba(0,0,0,.4)}
+.rp-qt{font-size:12.5px;font-weight:800;letter-spacing:1px;color:#B54708}
+.rp-q.red .rp-qt{color:#B42318}
+.rp-qq{font-size:18px;font-weight:700;margin:6px 0 14px;line-height:1.4}
+.rp-tfr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.rp-tf{min-height:54px;border-radius:14px;border:2px solid #D9DEEA;background:#FFFFFF;font:inherit;font-size:17px;font-weight:800;cursor:pointer}
+.rp-tf.t{color:#12805C}.rp-tf.f{color:#B42318}
+.rp-choices{display:flex;flex-direction:column;gap:8px}
+.rp-choice{min-height:48px;border:2px solid #D9DEEA;border-radius:14px;background:#FFFFFF;font:inherit;font-size:15px;font-weight:700;color:#2B3140;cursor:pointer;padding:8px 14px;text-align:left;display:flex;gap:10px;align-items:center}
+.rp-choice i{font-style:normal;width:26px;height:26px;border-radius:13px;background:#F2F4F8;color:#5B6472;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rp-right{border-color:#12B76A!important;background:#E3F4EC!important}
+.rp-wrong{border-color:#E0464E!important;background:#FFF1EF!important}
+.rp-exp{margin-top:12px;font-size:14px;line-height:1.5;border-radius:12px;padding:10px 12px}
+.rp-exp.ok{background:#E3F4EC;border:1.5px solid #12B76A;color:#0B5B3E}
+.rp-exp.no{background:#FFF1EF;border:1.5px solid #E0464E;color:#7A271A}
+.rp-clock{position:absolute;top:-22px;right:-14px;width:54px;height:54px}
+.rp-clock circle{fill:none;stroke-width:6}
+.rp-clock .bgc{fill:#FFFFFF;stroke:none}.rp-clock .bg{stroke:#FFE9B0}
+.rp-clock .fg{stroke:#F0B429;stroke-linecap:round;transform:rotate(-90deg);transform-origin:27px 27px}
+.rp-q.red .rp-clock .bg{stroke:#FFE1DE}.rp-q.red .rp-clock .fg{stroke:#E0464E}
+.rp-clock text{font-size:18px;font-weight:800;fill:#2B3140}
+
+/* chiến thắng / rương */
+.rp-center{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;align-items:center;padding:20px;text-align:center;gap:10px;background:radial-gradient(circle at 50% 35%,#4B2FA8 0,#1C1240 65%)}
+.rp-vic{font-size:44px;font-weight:800;letter-spacing:3px;background:linear-gradient(180deg,#FFF3B0,#FFC20E 60%,#E08A00);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 0 rgba(0,0,0,.4));animation:rpSlam .6s cubic-bezier(.3,1.5,.5,1)}
+.rp-lvup{font-size:18px;font-weight:800;color:#7CE0B5;animation:rpPop .5s ease .8s backwards}
+.rp-chestwrap{position:relative;width:260px;height:230px;display:flex;align-items:center;justify-content:center}
+.rp-rays{position:absolute;width:420px;height:420px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 6%,var(--rc) 8%,transparent 10% 22%,var(--rc) 24%,transparent 26% 38%,var(--rc) 40%,transparent 42% 54%,var(--rc) 56%,transparent 58% 70%,var(--rc) 72%,transparent 74% 86%,var(--rc) 88%,transparent 90%);opacity:0;animation:rpSpin 6s linear infinite;-webkit-mask:radial-gradient(circle,#000 20%,transparent 70%);mask:radial-gradient(circle,#000 20%,transparent 70%);transition:opacity .4s}
+.rp-chestwrap.open .rp-rays{opacity:.75}
+.rp-chest{position:relative;width:190px;height:160px;border:none;background:none;cursor:pointer;padding:0}
+.rp-chest svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))}
+.rp-chest .lid{transform-box:fill-box;transform-origin:50% 100%;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.rp-chest.shake{animation:rpShakeC .35s ease}
+.rp-chestwrap.open .lid{transform:translateY(-46px) rotate(-18deg)}
+.rp-chest .glow{opacity:0;transition:opacity .3s}
+.rp-chest.g1 .glow{opacity:.35}.rp-chest.g2 .glow{opacity:.7}.rp-chestwrap.open .glow{opacity:1}
+.rp-loot{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;max-width:720px}
+.rp-lootc{width:170px;border-radius:16px;padding:12px;background:linear-gradient(170deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border:3px solid var(--rc);display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;animation:rpFlip .6s cubic-bezier(.3,1.4,.5,1) backwards;box-shadow:0 0 22px var(--rc)}
+.rp-lootc .ic{font-size:44px;line-height:1.1}
+.rp-lootc b{font-size:14px}
+.rp-lootc small{font-size:11.5px;color:#E3DDFF;line-height:1.4}
+.rp-lootc.legend{background:linear-gradient(170deg,rgba(255,216,77,.35),rgba(122,46,255,.25));animation:rpFlip .6s cubic-bezier(.3,1.4,.5,1) backwards,rpShine 2s linear infinite}
+.rp-rates{font-size:11px;color:#BDB3F0}
+.rp-res{width:100%;max-width:640px;display:flex;flex-direction:column;gap:10px;align-items:center}
+.rp-learn{width:100%;text-align:left;border-radius:16px;padding:12px 14px;background:#FFFFFF;color:#2B3140;border:2px solid #1A3C9C;box-shadow:0 4px 0 #1A3C9C}
+.rp-learn h4{margin:0 0 6px;font-size:15px;color:#0B2A8A}
+.rp-learn ol{margin:0;padding-left:20px;font-size:13.5px;line-height:1.55}
+.rp-learn li{margin-bottom:6px}
+.rp-learn small{display:block;color:#1A3C9C;font-weight:600;font-size:11.5px}
+.rp-callout{width:100%;text-align:left;font-size:13px;line-height:1.5;border-radius:12px;padding:9px 12px;background:#FFF8E6;border:1.5px solid #F0C36A;color:#6B4E00}
+.rp-acts2{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.rp-win.mb .rp-acts2{grid-template-columns:1fr}
+.rp-acts2 .rp-btn{width:100%}
+.rp-form{width:100%;text-align:left;border:1.5px solid #B9CBF2;background:#F3F7FF;color:#2B3140;border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:9px;animation:rpPop .3s ease}
+.rp-form h4{margin:0;font-size:15px;color:#0B2A8A}
+.rp-fl{display:flex;flex-direction:column;gap:4px;font-size:12.5px;font-weight:600;color:#3D4451}
+.rp-in{width:100%;height:42px;border:1.5px solid #C3CBDB;border-radius:10px;padding:0 10px;font:inherit;font-size:14px;font-weight:400;color:#2B3140;background:#FFFFFF}
+textarea.rp-in{height:auto;padding:8px 10px;line-height:1.45;resize:vertical}
+.rp-in.pre{background:#FFFAE8;border-color:#E2BE55}
+.rp-mtag{font-size:10.5px;font-weight:700;background:#FFF1C2;color:#6B4E00;padding:1px 6px;border-radius:5px;margin-left:6px}
+.rp-err{font-size:12px;color:#B42318}
+.rp-ok{font-size:13.5px;line-height:1.5;color:#0B5B3E;background:#E3F4EC;border:1.5px solid #12B76A;border-radius:12px;padding:10px 12px}
+.rp-small{font-size:11.5px;color:#BDB3F0;line-height:1.5;max-width:600px}
+.rp-win.mb .rp-bosscv{width:200px;height:175px;right:2%;top:22%}
+.rp-win.mb .rp-hero{width:100px;left:4%;bottom:4%}
+.rp-win.mb .rp-hp{min-width:0;width:60%;padding:6px 8px}
+.rp-win.mb .rp-hp.boss{left:2%;top:2%}
+.rp-win.mb .rp-hp.me{right:2%;bottom:3%}
+.rp-win.mb .rp-hp .nm{font-size:12px;flex-wrap:wrap}
+.rp-win.mb .rp-charge{top:auto;bottom:38%;right:4%}
+.rp-win.mb .rp-vic{font-size:32px}
+.rp-win.mb .rp-node{width:120px}
+.rp-win.mb .rp-node .orb{width:86px;height:86px}
+.rp-win.mb .rp-node .orb canvas{width:76px;height:76px}
+.rp-win.mb .rp-ctl{padding:8px}
+.rp-win.mb .rp-log{font-size:13px;min-height:36px}
+.rp-toast{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:35;background:#FFFFFF;color:#2B3140;border:2px solid #FFD84D;border-radius:14px;padding:8px 14px;font-size:13.5px;font-weight:700;box-shadow:0 8px 20px rgba(0,0,0,.3);animation:rpToast .35s cubic-bezier(.3,1.4,.5,1);max-width:90%;text-align:center}
+
+@keyframes rpFade{from{opacity:0}to{opacity:1}}
+@keyframes rpWinIn{from{opacity:0;transform:translateY(20px) scale(.92)}to{opacity:1;transform:none}}
+@keyframes rpSheetIn{from{transform:translateY(80px);opacity:0}to{transform:none;opacity:1}}
+@keyframes rpBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes rpFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes rpSpin{to{transform:rotate(360deg)}}
+@keyframes rpDash{to{stroke-dashoffset:-36}}
+@keyframes rpTwinkle{0%,100%{opacity:.4}50%{opacity:.8}}
+@keyframes rpPop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:none}}
+@keyframes rpPulse{0%,100%{box-shadow:0 4px 0 #A87400,0 0 0 0 rgba(255,216,77,.6)}50%{box-shadow:0 4px 0 #A87400,0 0 0 14px rgba(255,216,77,0)}}
+@keyframes rpPulse2{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes rpDash2{0%{transform:none}40%{transform:translate(120px,-60px) scale(1.08)}100%{transform:none}}
+@keyframes rpHurt{0%,100%{transform:none;filter:none}20%{transform:translateX(-12px);filter:drop-shadow(0 0 12px #E0464E) brightness(1.4)}40%{transform:translateX(10px)}60%{transform:translateX(-6px)}}
+@keyframes rpBlink{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes rpUlt{0%,100%{box-shadow:0 0 0 0 rgba(255,216,77,.7)}50%{box-shadow:0 0 0 8px rgba(255,216,77,0)}}
+@keyframes rpSlam{0%{opacity:0;transform:scale(1.5) rotate(-3deg)}70%{opacity:1;transform:scale(.97) rotate(1deg)}100%{transform:none}}
+@keyframes rpShakeC{0%,100%{transform:none}20%{transform:rotate(-7deg) translateY(-6px)}40%{transform:rotate(7deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(4deg)}}
+@keyframes rpFlip{from{opacity:0;transform:translateY(-70px) rotateY(90deg) scale(.6)}to{opacity:1;transform:none}}
+@keyframes rpShine{0%,100%{box-shadow:0 0 22px #F0B429}50%{box-shadow:0 0 34px #FFE38A,0 0 60px rgba(122,46,255,.5)}}
+@keyframes rpToast{from{opacity:0;transform:translate(-50%,-14px) scale(.9)}to{opacity:1;transform:translate(-50%,0)}}
+.rp-reduce .rp-root *,.rp-root.rp-reduce *{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion: reduce){.rp-root *{animation:none!important;transition:none!important}}
+/* RP-CSS-END */
+</style>
+</head>
+<body>
+<header class="sa-top">
+  <h1>Option 10 · Game nhập vai “Hành Trình Miễn Dịch cùng Mimo”</h1>
+  <p>Bản đồ 3 ải · đánh theo lượt · 5 hệ Lửa, Nước, Băng, Gió, Đá · vũ khí, bùa, rương theo độ hiếm · mỗi ải là một chủ đề bài, cuối ải dẫn về Đặt lịch / Hỏi bác sĩ</p>
+</header>
+<main class="sa-main"><div id="rp-demo"></div></main>
+<script>
+/* RP-JS-START */
+const MimoRPG = (function () {
+  /* ================= HỆ & DỮ LIỆU ================= */
+  const EL = {
+    fire: { n: 'Lửa', i: '🔥', c: '#FF6B3D' }, water: { n: 'Nước', i: '💧', c: '#3BA3FF' }, ice: { n: 'Băng', i: '❄️', c: '#5CCFF5' },
+    wind: { n: 'Gió', i: '🌪️', c: '#3CC88A' }, rock: { n: 'Đá', i: '🪨', c: '#B08355' }
+  };
+  const BEATS = { water: 'fire', fire: 'ice', ice: 'wind', wind: 'rock', rock: 'water' };
+  const WEAK = {}; Object.keys(BEATS).forEach((k) => { WEAK[BEATS[k]] = k; });
+  const em = (a, d) => (BEATS[a] === d ? 2 : BEATS[d] === a ? 0.5 : 1);
+  const RAR = { c: { n: 'Thường', c: '#9AA4B5' }, r: { n: 'Hiếm', c: '#3BA3FF' }, e: { n: 'Sử thi', c: '#A970FF' }, l: { n: 'Huyền thoại', c: '#F0B429' } };
+  const SK = {
+    fire1: { n: 'Chém Lửa', el: 'fire', pow: 1.6, cost: 3, burn: 0.3, d: 'Sát thương Lửa, 30% thiêu đốt' },
+    fire2: { n: 'Hỏa Ấn', el: 'fire', pow: 0.8, cost: 4, burn: 1, d: 'Chắc chắn thiêu đốt 3 lượt' },
+    water1: { n: 'Thủy Tiễn', el: 'water', pow: 1.6, cost: 3, d: 'Sát thương Nước' },
+    water2: { n: 'Suối Hồi Sinh', el: 'water', heal: 0.3, cleanse: true, cost: 4, d: 'Hồi 30% máu, giải hiệu ứng xấu' },
+    rock1: { n: 'Địa Chấn', el: 'rock', pow: 1.7, cost: 3, brk: 0.4, d: 'Sát thương Đá, 40% phá giáp' },
+    rock2: { n: 'Giáp Đá', el: 'rock', guard: 2, cost: 4, d: 'Giảm 50% sát thương nhận 2 lượt' },
+    ice1: { n: 'Băng Tiễn', el: 'ice', pow: 1.7, cost: 3, frz: 0.35, d: 'Sát thương Băng, 35% đóng băng' },
+    ice2: { n: 'Phong Ấn Băng', el: 'ice', pow: 0.9, cost: 5, frz: 0.7, d: '70% đóng băng boss 1 lượt' },
+    wind1: { n: 'Phong Tiễn', el: 'wind', pow: 1.9, cost: 3, crit: 0.15, d: 'Sát thương Gió, +15% chí mạng' },
+    wind2: { n: 'Lốc Xoáy', el: 'wind', pow: 0.8, cost: 4, dodge: 2, d: 'Sát thương nhẹ, né 50% đòn trong 2 lượt' }
+  };
+  const ULT = { fire: 'HỎA LONG KHÁNG THỂ', water: 'ĐẠI HỒNG THỦY', ice: 'KỶ BĂNG HÀ', wind: 'CUỒNG PHONG', rock: 'THIÊN THẠCH' };
+  const IT = {
+    w_fire: { t: 'weapon', n: 'Kiếm Kháng Thể', i: '🗡️', el: 'fire', atk: 4, r: 'c', sk: ['fire1', 'fire2'] },
+    w_water: { t: 'weapon', n: 'Trượng Suối Mát', i: '🔱', el: 'water', atk: 3, r: 'c', sk: ['water1', 'water2'] },
+    w_rock: { t: 'weapon', n: 'Búa Đá Núi', i: '🔨', el: 'rock', atk: 6, r: 'r', sk: ['rock1', 'rock2'] },
+    w_ice: { t: 'weapon', n: 'Trượng Băng Tĩnh', i: '🧊', el: 'ice', atk: 8, r: 'e', sk: ['ice1', 'ice2'] },
+    w_wind: { t: 'weapon', n: 'Cung Gió Lành', i: '🏹', el: 'wind', atk: 10, r: 'l', sk: ['wind1', 'wind2'] },
+    c_hp: { t: 'charm', n: 'Bùa Bạch Cầu', i: '🧿', r: 'c', hp: 15, d: '+15 máu tối đa' },
+    c_crit: { t: 'charm', n: 'Nhẫn Kháng Thể', i: '💍', r: 'r', crit: 0.1, d: '+10% chí mạng' },
+    c_def: { t: 'charm', n: 'Huy Hiệu Miễn Dịch', i: '🛡️', r: 'e', red: 0.15, d: 'Giảm 15% sát thương nhận' },
+    c_regen: { t: 'charm', n: 'Ngọc Hồi Phục', i: '💎', r: 'l', regen: 0.05, d: 'Hồi 5% máu mỗi lượt' },
+    p_heal: { t: 'potion', n: 'Bình Nước Mát', i: '🧴', r: 'c', d: 'Hồi 40% máu' },
+    p_clean: { t: 'potion', n: 'Bùa Ngủ Ngon', i: '🌙', r: 'r', d: 'Giải hiệu ứng xấu, hồi 15% máu' }
+  };
+  const STAGES = [
+    {
+      id: 'sot', no: 1, rec: 1, drop: 'w_rock', khoa: 'Nội tổng hợp', reason: 'Sốt', bg: 'radial-gradient(circle at 70% 30%,#FF8A3D55 0,transparent 50%),linear-gradient(180deg,#5A1A2E,#2A1040)',
+      article: 'Thắc mắc: Người bị sốt có nên đắp chăn không?', place: 'Hang Nhiệt Độ',
+      boss: { n: 'Chúa Tể Sốt Cao', el: 'fire', hp: 260, atk: 14, def: 5, shape: 'spiky', color: '#E0464E', moves: [{ n: 'Hơi Nóng', pow: 1 }, { n: 'Thiêu Đốt', pow: 0.7, eff: 'burn' }, { n: 'Cơn Sốt Bùng Phát', pow: 2.3, heavy: true }] },
+      quiz: [
+        { q: 'Bị sốt nên trùm chăn thật dày cho ra mồ hôi.', a: false, exp: 'Sai! Chăn dày giữ nhiệt khiến thân nhiệt khó hạ. Nên dùng chăn mỏng, thoáng.' },
+        { q: 'Đang rét run có thể đắp chăn mỏng một lúc, hết rét run thì bỏ ra.', a: true, exp: 'Đúng! Lúc rét run khi sốt đang tăng có thể đắp chăn mỏng trong thời gian ngắn.' },
+        { q: 'Kháng sinh giúp khỏi nhanh mọi cơn sốt do cảm cúm.', a: false, exp: 'Sai! Cảm cúm thường do virus, kháng sinh không có tác dụng; chỉ dùng khi bác sĩ kê đơn.' },
+        { q: 'Lau người bằng nước ấm giúp hạ nhiệt dễ chịu hơn chườm đá.', a: true, exp: 'Đúng! Nước đá làm co mạch, gây rét run; nước ấm giúp tỏa nhiệt dễ chịu hơn.' }
+      ],
+      emg: { title: 'Mimo sốt cao và co giật!', ok: 'Gọi 115, đưa đi cấp cứu ngay', no: ['Đắp thêm chăn dày cho ấm', 'Cho uống thêm thuốc rồi chờ'], tip: 'Co giật khi sốt cao cần cấp cứu: đặt người bệnh nằm nghiêng, không cho gì vào miệng và gọi 115.' },
+      cards: [
+        { t: 'Không trùm chăn dày khi sốt: chăn dày giữ nhiệt, thân nhiệt khó hạ.', sec: 'Sốt có nên đắp chăn không?' },
+        { t: 'Uống đủ nước, mặc đồ mỏng, lau người nước ấm, nghỉ ngơi.', sec: 'Cách giúp cơ thể dễ chịu hơn khi sốt' },
+        { t: 'Co giật khi sốt cao: đặt nằm nghiêng, không cho gì vào miệng, gọi 115.', sec: 'Rủi ro nếu cơ thể không hạ nhiệt kịp thời' }
+      ],
+      intro2: 'Người đang sốt có nên đắp chăn không? Đây là thắc mắc rất thường gặp khi chăm sóc người bệnh tại nhà.',
+      secs: [['Sốt có nên đắp chăn không?', 'Người bị sốt không nên đắp chăn quá dày. Khi sốt, cơ thể cần thải bớt nhiệt qua da.'], ['Rủi ro nếu cơ thể không hạ nhiệt kịp thời', 'Nếu nhiệt không thoát được ra ngoài, thân nhiệt có thể tiếp tục tăng, gây mệt, nhức đầu và mất nước.']]
+    },
+    {
+      id: 'gerd', no: 2, rec: 2, drop: 'w_ice', khoa: 'Tiêu hóa', reason: 'Trào ngược dạ dày', bg: 'radial-gradient(circle at 70% 30%,#A8C93A55 0,transparent 50%),linear-gradient(180deg,#1E4A3A,#122340)',
+      article: 'Trào ngược dạ dày thực quản: dấu hiệu và cách cải thiện', place: 'Đầm Lầy Axit',
+      boss: { n: 'Quái Vật Axit', el: 'water', hp: 340, atk: 17, def: 7, shape: 'drop', color: '#7FB800', moves: [{ n: 'Giọt Axit', pow: 1 }, { n: 'Phun Axit', pow: 0.7, eff: 'weak' }, { n: 'Sóng Trào Ngược', pow: 2.3, heavy: true }] },
+      quiz: [
+        { q: 'Nằm ngay sau khi ăn no giúp tiêu hóa tốt hơn.', a: false, exp: 'Sai! Nằm ngay sau ăn khiến dịch dạ dày dễ trào lên thực quản.' },
+        { q: 'Kê cao đầu giường có thể giúp giảm trào ngược về đêm.', a: true, exp: 'Đúng! Đầu cao giúp dịch dạ dày khó trào ngược khi nằm.' },
+        { q: 'Nôn ra máu chỉ cần uống thuốc dạ dày ở nhà.', a: false, exp: 'Sai! Nôn ra máu là dấu hiệu báo động, cần đến cơ sở cấp cứu ngay.' },
+        { q: 'Mặc quần áo bó chặt có thể làm trào ngược nặng hơn.', a: true, exp: 'Đúng! Đồ bó chặt làm tăng áp lực ổ bụng, đẩy dịch dạ dày lên.' }
+      ],
+      emg: { title: 'Mimo nôn ra máu!', ok: 'Đến cấp cứu ngay / gọi 115', no: ['Uống thuốc dạ dày rồi nghỉ', 'Ăn cháo cho dịu dạ dày'], tip: 'Nôn ra máu, đi ngoài phân đen là dấu hiệu báo động: cần đến cơ sở cấp cứu ngay.' },
+      cards: [
+        { t: 'Không nằm ngay sau ăn; ăn tối trước khi ngủ khoảng 2–3 giờ.', sec: 'Cách cải thiện tại nhà' },
+        { t: 'Hạn chế rượu bia, cà phê, đồ chiên nhiều dầu mỡ.', sec: 'Thói quen khiến trào ngược nặng hơn' },
+        { t: 'Nuốt khó, nôn ra máu, phân đen, sụt cân không rõ lý do: đi khám ngay.', sec: 'Khi nào cần đi khám?' }
+      ],
+      intro2: 'Trào ngược dạ dày thực quản xảy ra khi dịch trong dạ dày đi ngược lên thực quản, gây cảm giác nóng rát khó chịu.',
+      secs: [['Dấu hiệu thường gặp', 'Ợ nóng, ợ chua, cảm giác nóng rát sau xương ức, thường xuất hiện sau ăn hoặc khi nằm.'], ['Thói quen khiến trào ngược nặng hơn', 'Ăn quá no, ăn sát giờ ngủ, nằm ngay sau ăn làm tăng nguy cơ trào ngược.']]
+    },
+    {
+      id: 'mig', no: 3, rec: 3, drop: 'w_wind', khoa: 'Thần kinh', reason: 'Đau nửa đầu', bg: 'radial-gradient(circle at 70% 30%,#8E6CEF66 0,transparent 50%),linear-gradient(180deg,#2B1F6B,#120C33)',
+      article: 'Đau nửa đầu (migraine): dấu hiệu nhận biết và cách giảm cơn đau', place: 'Đỉnh Bão Tố',
+      boss: { n: 'Bão Migraine', el: 'wind', hp: 420, atk: 20, def: 8, shape: 'spiky', color: '#6C3FD1', moves: [{ n: 'Tia Chớp Đau', pow: 1, eff: 'stun', ch: 0.25 }, { n: 'Gió Lốc Khởi Phát', pow: 0.8, eff: 'weak' }, { n: 'Siêu Bão', pow: 2.3, heavy: true }] },
+      quiz: [
+        { q: 'Thiếu ngủ có thể khởi phát cơn migraine.', a: true, exp: 'Đúng! Thiếu ngủ hoặc ngủ quá nhiều đều có thể khởi phát cơn đau.' },
+        { q: 'Uống thuốc giảm đau mỗi ngày giúp phòng migraine.', a: false, exp: 'Sai! Lạm dụng thuốc giảm đau có thể làm đau đầu nặng thêm; hỏi bác sĩ về cách phòng ngừa.' },
+        { q: 'Đau đầu dữ dội đột ngột kèm méo miệng chỉ cần nằm nghỉ.', a: false, exp: 'Sai! Đây có thể là dấu hiệu đột quỵ, cần gọi 115 ngay.' },
+        { q: 'Trong cơn migraine nên nghỉ ở phòng tối, yên tĩnh.', a: true, exp: 'Đúng! Ánh sáng và tiếng ồn làm cơn đau nặng hơn.' }
+      ],
+      emg: { title: 'Mimo đau đầu dữ dội đột ngột, méo miệng, nói khó!', ok: 'Gọi 115 ngay', no: ['Uống thuốc giảm đau rồi ngủ', 'Xoa dầu, nằm nghỉ cho đỡ'], tip: 'Đau đầu dữ dội đột ngột kèm méo miệng, nói khó, yếu liệt có thể là đột quỵ: gọi 115 ngay.' },
+      cards: [
+        { t: 'Ngủ đủ, ăn đúng bữa, giảm căng thẳng giúp hạn chế cơn đau.', sec: 'Yếu tố dễ khởi phát cơn đau' },
+        { t: 'Trong cơn đau: nghỉ ở phòng tối, yên tĩnh.', sec: 'Dấu hiệu nhận biết cơn migraine' },
+        { t: 'Đau đầu dữ dội đột ngột, kèm yếu liệt, méo miệng, nói khó: gọi 115.', sec: 'Khi nào cần đi khám ngay?' }
+      ],
+      intro2: 'Đau nửa đầu (migraine) là dạng đau đầu nguyên phát thường gặp, có thể ảnh hưởng nhiều đến học tập và công việc.',
+      secs: [['Đau nửa đầu là gì?', 'Migraine thường đau một bên đầu, theo nhịp mạch đập, mức độ vừa đến nặng.'], ['Yếu tố dễ khởi phát cơn đau', 'Thiếu ngủ, căng thẳng, bỏ bữa, rượu bia, ánh sáng mạnh có thể khởi phát cơn đau.']]
+    }
+  ];
+  const HOTLINE = '024 3872 3872 · 093 180 6858';
+  const SAVE_KEY = 'mimo-rpg-v1';
+  const NEW_SAVE = () => ({ lv: 1, xp: 0, inv: { w_fire: 1, w_water: 1, p_heal: 2, p_clean: 1 }, eq: { w: 'w_fire', c: null }, stars: {}, cards: [] });
+
+  /* ================= TIỆN ÍCH ================= */
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const shuffle = (a) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+  const reduced = () => !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) || document.documentElement.classList.contains('rp-reduce');
+  const elTag = (k) => '<span class="rp-tag" style="background:' + EL[k].c + '">' + EL[k].i + ' ' + EL[k].n + '</span>';
+  const rarTag = (r) => '<span class="rp-tag" style="background:' + RAR[r].c + '">' + RAR[r].n + '</span>';
+  let MUTED = true;
+  try { MUTED = localStorage.getItem('rp-muted') !== '0'; } catch (e) { /* bỏ qua */ }
+  const SND = (function () {
+    let ctx = null;
+    const tone = (f1, f2, t0, dur, type, vol) => { const o = ctx.createOscillator(), g = ctx.createGain(); o.type = type; o.frequency.setValueAtTime(f1, t0); if (f2) o.frequency.exponentialRampToValueAtTime(f2, t0 + dur); g.gain.setValueAtTime(0.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t0 + dur); o.connect(g); g.connect(ctx.destination); o.start(t0); o.stop(t0 + dur + 0.03); };
+    return function (k) {
+      if (MUTED) return;
+      try {
+        ctx = ctx || new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') ctx.resume(); const n = ctx.currentTime;
+        if (k === 'hit') { tone(300, 90, n, 0.18, 'sawtooth', 0.05); tone(900, 300, n, 0.08, 'square', 0.03); }
+        if (k === 'crit') { tone(1200, 200, n, 0.25, 'sawtooth', 0.06); tone(200, 60, n + 0.05, 0.3, 'square', 0.05); }
+        if (k === 'whoosh') tone(400, 1400, n, 0.18, 'triangle', 0.03);
+        if (k === 'heal') [660, 880, 1100].forEach((f, i) => tone(f, f * 1.5, n + i * 0.08, 0.2, 'sine', 0.05));
+        if (k === 'hurt') tone(220, 70, n, 0.35, 'square', 0.05);
+        if (k === 'ult') { tone(100, 800, n, 0.6, 'sawtooth', 0.05); [523, 784, 1047, 1568].forEach((f, i) => tone(f, 0, n + 0.3 + i * 0.07, 0.25, 'square', 0.04)); }
+        if (k === 'roar') { tone(90, 50, n, 0.9, 'sawtooth', 0.08); }
+        if (k === 'charge') tone(200, 600, n, 0.6, 'sawtooth', 0.04);
+        if (k === 'up') [523, 659, 784, 1047].forEach((f, i) => tone(f, 0, n + i * 0.07, 0.18, 'square', 0.035));
+        if (k === 'bad') tone(240, 120, n, 0.3, 'sawtooth', 0.04);
+        if (k === 'win') [523, 659, 784, 1047, 784, 1047].forEach((f, i) => tone(f, 0, n + i * 0.12, i === 5 ? 0.6 : 0.18, 'triangle', 0.06));
+        if (k === 'lose') [392, 349, 311, 262].forEach((f, i) => tone(f, 0, n + i * 0.18, 0.3, 'triangle', 0.06));
+        if (k === 'tap') tone(500, 700, n, 0.08, 'square', 0.04);
+        if (k === 'open') { tone(200, 1600, n, 0.5, 'sine', 0.06); [1047, 1319, 1568, 2093].forEach((f, i) => tone(f, 0, n + 0.3 + i * 0.08, 0.35, 'sine', 0.05)); }
+        if (k === 'siren') { tone(700, 1000, n, 0.32, 'square', 0.03); tone(1000, 700, n + 0.33, 0.32, 'square', 0.03); }
+      } catch (e) { /* không hỗ trợ âm thanh */ }
+    };
+  })();
+
+  /* ================= HÌNH VẼ ================= */
+  const FACES = {
+    happy: '<path d="M57 88 q7 -10 14 0" stroke="#0B2A8A" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M89 88 q7 -10 14 0" stroke="#0B2A8A" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M68 99 q12 12 24 0" stroke="#0B2A8A" stroke-width="4" fill="none" stroke-linecap="round"/>',
+    fight: '<path d="M56 80 l14 5" stroke="#0B2A8A" stroke-width="4" stroke-linecap="round"/><path d="M104 80 l-14 5" stroke="#0B2A8A" stroke-width="4" stroke-linecap="round"/><circle cx="64" cy="90" r="5" fill="#0B2A8A"/><circle cx="96" cy="90" r="5" fill="#0B2A8A"/><path d="M70 104 q10 6 20 0" stroke="#0B2A8A" stroke-width="4" fill="none" stroke-linecap="round"/>',
+    worried: '<path d="M58 82 l11 5 -11 5" stroke="#0B2A8A" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M102 82 l-11 5 11 5" stroke="#0B2A8A" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M68 105 q4 -5 8 0 t8 0 t8 0" stroke="#0B2A8A" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M119 66 q6 8 0 11 q-6 -3 0 -11z" fill="#7CC4FF"/>',
+    dizzy: '<path d="M58 81 l12 12 M70 81 l-12 12" stroke="#0B2A8A" stroke-width="4" stroke-linecap="round"/><path d="M90 81 l12 12 M102 81 l-12 12" stroke="#0B2A8A" stroke-width="4" stroke-linecap="round"/><ellipse cx="80" cy="107" rx="6" ry="7" fill="#0B2A8A"/>',
+    party: '<path d="M64 78 l2.6 5.4 5.9 .8 -4.3 4.1 1 5.9 -5.2 -2.8 -5.2 2.8 1 -5.9 -4.3 -4.1 5.9 -.8z" fill="#FFC20E" stroke="#0B2A8A" stroke-width="2" stroke-linejoin="round"/><path d="M96 78 l2.6 5.4 5.9 .8 -4.3 4.1 1 5.9 -5.2 -2.8 -5.2 2.8 1 -5.9 -4.3 -4.1 5.9 -.8z" fill="#FFC20E" stroke="#0B2A8A" stroke-width="2" stroke-linejoin="round"/><path d="M66 99 q14 16 28 0 z" fill="#E0464E" stroke="#0B2A8A" stroke-width="3" stroke-linejoin="round"/>'
+  };
+  function mimoSVG(cape) {
+    return '<svg viewBox="0 0 160 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse cx="80" cy="162" rx="36" ry="6" fill="rgba(0,0,0,0.3)"/><g class="rp-bot">' +
+      (cape ? '<path d="M34 60 Q10 120 30 150 L130 150 Q150 120 126 60 Z" fill="' + cape + '" opacity="0.9"/>' : '') +
+      '<path d="M30 104 q-16 2 -19 -13" fill="none" stroke="#1A3C9C" stroke-width="6" stroke-linecap="round"/><circle cx="11" cy="89" r="6.5" fill="#FFFFFF" stroke="#1A3C9C" stroke-width="3"/>' +
+      '<path d="M130 104 q16 2 19 -13" fill="none" stroke="#1A3C9C" stroke-width="6" stroke-linecap="round"/><circle cx="149" cy="89" r="6.5" fill="#FFFFFF" stroke="#1A3C9C" stroke-width="3"/>' +
+      '<ellipse cx="62" cy="144" rx="10" ry="5.5" fill="#1A3C9C"/><ellipse cx="98" cy="144" rx="10" ry="5.5" fill="#1A3C9C"/>' +
+      '<rect x="28" y="28" width="104" height="112" rx="26" fill="#FFFFFF"/><path d="M28 58 V54 a26 26 0 0 1 26 -26 h52 a26 26 0 0 1 26 26 V58 z" fill="#1A3C9C"/>' +
+      '<text x="80" y="49" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="2.5" font-family="Be Vietnam Pro, Arial, sans-serif">MIMO</text>' +
+      '<rect x="28" y="28" width="104" height="112" rx="26" fill="none" stroke="#1A3C9C" stroke-width="4"/>' +
+      '<rect x="50" y="15" width="10" height="24" rx="5" fill="#FFC20E" stroke="#0B2A8A" stroke-width="3"/><rect x="100" y="15" width="10" height="24" rx="5" fill="#FFC20E" stroke="#0B2A8A" stroke-width="3"/>' +
+      '<circle cx="50" cy="99" r="6" fill="#FF9DB0" opacity="0.75"/><circle cx="110" cy="99" r="6" fill="#FF9DB0" opacity="0.75"/>' +
+      Object.keys(FACES).map((k) => '<g class="rpf rpf-' + k + '">' + FACES[k] + '</g>').join('') + '</g></svg>';
+  }
+  function shade(hex, a) { const n = parseInt(hex.slice(1), 16); const f = (v) => Math.min(255, Math.max(0, v + a)); return 'rgb(' + f(n >> 16) + ',' + f((n >> 8) & 255) + ',' + f(n & 255) + ')'; }
+  function drawBoss(c, e, t) {
+    const { x, y, r } = e; const col = e.flash > 0 ? '#FFFFFF' : e.color;
+    c.save();
+    if (e.shape === 'spiky') {
+      const n = 14, rot = t * 0.6;
+      c.strokeStyle = shade(e.color, -40); c.lineWidth = Math.max(3, r * 0.1);
+      for (let i = 0; i < n; i++) { const a = rot + i * 6.283 / n, l = r * (1.3 + 0.06 * Math.sin(t * 6 + i)); c.beginPath(); c.moveTo(x + Math.cos(a) * r * 0.8, y + Math.sin(a) * r * 0.8); c.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l); c.stroke(); c.fillStyle = shade(e.color, 30); c.beginPath(); c.arc(x + Math.cos(a) * l, y + Math.sin(a) * l, r * 0.15, 0, 6.29); c.fill(); }
+      const g = c.createRadialGradient(x - r * 0.3, y - r * 0.4, r * 0.1, x, y, r); g.addColorStop(0, shade(col, 60)); g.addColorStop(1, col);
+      c.fillStyle = g; c.beginPath(); c.arc(x, y, r, 0, 6.29); c.fill();
+    } else {
+      const wob = Math.sin(t * 4) * r * 0.05;
+      const g = c.createRadialGradient(x - r * 0.3, y - r * 0.2, r * 0.1, x, y + r * 0.2, r * 1.1); g.addColorStop(0, shade(col, 70)); g.addColorStop(1, col);
+      c.fillStyle = g; c.beginPath(); c.moveTo(x, y - r * 1.35 - wob); c.bezierCurveTo(x + r * 0.5, y - r * 0.7, x + r * 1.05, y - r * 0.1, x + r, y + r * 0.35); c.arc(x, y + r * 0.35, r, 0, Math.PI); c.bezierCurveTo(x - r * 1.05, y - r * 0.1, x - r * 0.5, y - r * 0.7, x, y - r * 1.35 - wob); c.fill();
+    }
+    const ey = y + (e.shape === 'drop' ? r * 0.25 : 0) - r * 0.1, ex = r * 0.36, er = r * 0.24;
+    [-1, 1].forEach((s) => {
+      c.fillStyle = '#FFFFFF'; c.beginPath(); c.arc(x + s * ex, ey, er, 0, 6.29); c.fill();
+      if (e.dead) { c.strokeStyle = '#1B1F2A'; c.lineWidth = 4; c.beginPath(); c.moveTo(x + s * ex - er * 0.6, ey - er * 0.6); c.lineTo(x + s * ex + er * 0.6, ey + er * 0.6); c.moveTo(x + s * ex + er * 0.6, ey - er * 0.6); c.lineTo(x + s * ex - er * 0.6, ey + er * 0.6); c.stroke(); }
+      else { c.fillStyle = '#1B1F2A'; c.beginPath(); c.arc(x + s * ex - er * 0.35, ey + er * 0.25, er * 0.55, 0, 6.29); c.fill(); c.strokeStyle = '#1B1F2A'; c.lineWidth = Math.max(3, r * 0.08); c.lineCap = 'round'; c.beginPath(); c.moveTo(x + s * (ex + er), ey - er * 1.3); c.lineTo(x + s * (ex - er * 0.6), ey - er * 0.75); c.stroke(); }
+    });
+    c.strokeStyle = '#1B1F2A'; c.lineWidth = Math.max(3, r * 0.08); c.beginPath(); c.arc(x, ey + r * 0.52, r * 0.22, Math.PI * 1.15, Math.PI * 1.85); c.stroke();
+    c.fillStyle = '#FFC20E'; c.strokeStyle = '#B57A00'; c.lineWidth = 3;
+    const cy = y - r * (e.shape === 'drop' ? 1.45 : 1.05), cw = r * 0.9;
+    c.beginPath(); c.moveTo(x - cw / 2, cy); c.lineTo(x - cw / 2, cy - r * 0.3); c.lineTo(x - cw / 4, cy - r * 0.12); c.lineTo(x, cy - r * 0.4); c.lineTo(x + cw / 4, cy - r * 0.12); c.lineTo(x + cw / 2, cy - r * 0.3); c.lineTo(x + cw / 2, cy); c.closePath(); c.fill(); c.stroke();
+    c.restore();
+  }
+  function chestSVG(r) {
+    const col = RAR[r].c;
+    return '<svg viewBox="0 0 190 160" aria-hidden="true"><defs><radialGradient id="cg' + r + '"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="' + col + '" stop-opacity="0"/></radialGradient></defs>' +
+      '<ellipse class="glow" cx="95" cy="90" rx="95" ry="70" fill="url(#cg' + r + ')"/>' +
+      '<rect x="20" y="70" width="150" height="80" rx="12" fill="#8B4A1C" stroke="#4A2208" stroke-width="5"/>' +
+      '<rect x="20" y="96" width="150" height="14" fill="' + col + '" stroke="#4A2208" stroke-width="3"/>' +
+      '<rect x="80" y="86" width="30" height="34" rx="6" fill="#FFD84D" stroke="#4A2208" stroke-width="4"/><circle cx="95" cy="103" r="5" fill="#4A2208"/>' +
+      '<g class="lid"><path d="M20 72 V52 Q20 18 95 18 Q170 18 170 52 V72 Z" fill="#A35A24" stroke="#4A2208" stroke-width="5"/><rect x="20" y="56" width="150" height="14" fill="' + col + '" stroke="#4A2208" stroke-width="3"/></g></svg>';
+  }
+
+  /* ================= GAME ================= */
+  class RPG {
+    constructor(host, mode, articleId, hooks) { this.host = host; this.mode = mode; this.articleId = articleId; this.hooks = hooks || {}; this.isOpen = false; this.raf = null; this.tok = 0; this.load(); }
+    ev(n, d) { if (this.hooks.event) this.hooks.event(n, d || {}); }
+    load() { try { this.S = Object.assign(NEW_SAVE(), JSON.parse(localStorage.getItem(SAVE_KEY) || 'null') || {}); } catch (e) { this.S = NEW_SAVE(); } }
+    save() { try { localStorage.setItem(SAVE_KEY, JSON.stringify(this.S)); } catch (e) { /* trình duyệt chặn lưu */ } }
+    wait(ms) { const t = this.tok; return new Promise((res) => setTimeout(() => res(t === this.tok), reduced() ? ms * 0.3 : ms)); }
+    open() {
+      if (this.isOpen) return; this.isOpen = true;
+      this.back = document.createElement('button'); this.back.type = 'button'; this.back.className = 'rp-back'; this.back.setAttribute('aria-label', 'Đóng game'); this.back.addEventListener('click', () => this.close());
+      const w = this.win = document.createElement('div'); w.className = 'rp-win ' + this.mode; w.tabIndex = -1; w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', 'Game Hành Trình Miễn Dịch');
+      w.innerHTML = '<div class="rp-top"><div class="rp-brand"><b>HÀNH TRÌNH MIỄN DỊCH</b><span>Cùng Mimo vượt 3 ải · mỗi ải là một chủ đề sức khỏe</span></div><div class="rp-lv"><span class="rp-lvt"></span><div class="rp-xp"><b></b></div></div><button type="button" class="rp-icb" data-g="mute"></button><button type="button" class="rp-icb" data-g="close" aria-label="Đóng game">✕</button></div><div class="rp-main"></div>';
+      this.host.appendChild(this.back); this.host.appendChild(w);
+      this.main = w.querySelector('.rp-main');
+      w.querySelector('[data-g=close]').addEventListener('click', () => this.close());
+      this.muteBtn = w.querySelector('[data-g=mute]'); this.muteBtn.addEventListener('click', () => { MUTED = !MUTED; try { localStorage.setItem('rp-muted', MUTED ? '1' : '0'); } catch (e) { /* bỏ qua */ } this.paintTop(); SND('tap'); });
+      this.main.addEventListener('click', (e) => { const a = e.target.closest('[data-a]'); if (!a || a.disabled || !this.main.contains(a)) return; const f = this.h && this.h[a.dataset.a]; if (f) f(a); });
+      w.addEventListener('keydown', (e) => { if (e.key === 'Escape') this.close(); if (this.keyH) this.keyH(e); });
+      this.paintTop(); this.map();
+      w.focus({ preventScroll: true });
+      this.ev('game_open', { article: this.articleId });
+    }
+    close() { this.tok++; cancelAnimationFrame(this.raf); this.isOpen = false; if (this.win) this.win.remove(); if (this.back) this.back.remove(); if (this.hooks.onClose) this.hooks.onClose(); }
+    paintTop() {
+      if (!this.win) return;
+      this.win.querySelector('.rp-lvt').textContent = 'Cấp ' + this.S.lv + ' · ' + this.S.xp + '/100 EXP';
+      this.win.querySelector('.rp-xp b').style.width = this.S.xp + '%';
+      this.muteBtn.textContent = MUTED ? '🔇' : '🔊'; this.muteBtn.setAttribute('aria-label', MUTED ? 'Bật âm thanh' : 'Tắt âm thanh');
+    }
+    toast(t) { const o = this.main.querySelector('.rp-toast'); if (o) o.remove(); const d = document.createElement('div'); d.className = 'rp-toast'; d.setAttribute('role', 'status'); d.textContent = t; this.main.appendChild(d); setTimeout(() => d.remove(), 2600); }
+    screen(html, h, keyH) { this.tok++; cancelAnimationFrame(this.raf); this.h = h || {}; this.keyH = keyH || null; this.main.innerHTML = '<div class="rp-scr">' + html + '</div>'; return this.main.firstElementChild; }
+    stats() {
+      const S = this.S, w = IT[S.eq.w], c = S.eq.c ? IT[S.eq.c] : {};
+      return { hp: 100 + (S.lv - 1) * 15 + (c.hp || 0), atk: 10 + (S.lv - 1) * 3 + w.atk, def: 4 + (S.lv - 1) * 2, crit: 0.1 + (c.crit || 0), red: c.red || 0, regen: c.regen || 0, el: w.el, w, c: S.eq.c ? IT[S.eq.c] : null };
+    }
+    unlocked(i) { const st = STAGES[i]; return i === 0 || (this.S.stars[STAGES[i - 1].id] || 0) > 0 || st.id === this.articleId; }
+
+    /* ---------- BẢN ĐỒ ---------- */
+    map(selIdx) {
+      const pos = this.mode === 'pc' ? [[18, 70], [44, 34], [72, 64]] : [[24, 36], [74, 21], [30, 8]];
+      const here = STAGES.findIndex((s) => s.id === this.articleId);
+      if (selIdx == null) selIdx = here >= 0 ? here : 0;
+      const d = 'M ' + pos.map((p) => p[0] + ' ' + p[1]).join(' L ');
+      const nodes = STAGES.map((st, i) => {
+        const lk = !this.unlocked(i), s = this.S.stars[st.id] || 0;
+        return '<button type="button" class="rp-node' + (lk ? ' locked' : '') + (i === selIdx ? ' sel' : '') + '" data-a="node" data-i="' + i + '" style="left:' + pos[i][0] + '%;top:' + pos[i][1] + '%;--c:' + EL[st.boss.el].c + '" aria-label="Ải ' + st.no + ': ' + st.boss.n + (lk ? ' (đang khóa)' : '') + '">' +
+          '<span class="orb"><canvas width="184" height="184"></canvas>' + (lk ? '<span class="lock">🔒</span>' : '') + '</span>' +
+          '<span class="nm">Ải ' + st.no + ' · ' + esc(st.place) + '</span><span class="st">' + '★'.repeat(s) + '☆'.repeat(3 - s) + '</span>' + (i === here ? '<span class="here">📖 Bài bạn đang đọc</span>' : '') + '</button>';
+      }).join('');
+      const cards = this.S.cards.length;
+      const el = this.screen('<div class="rp-map"><div class="rp-stars"></div><svg class="rp-path" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="' + d + '" vector-effect="non-scaling-stroke"/></svg>' + nodes +
+        '<div class="rp-avatar rp-mimo" data-mood="happy" style="left:' + pos[selIdx][0] + '%;top:' + (pos[selIdx][1] - 6) + '%">' + mimoSVG(EL[this.stats().el].c) + '</div>' +
+        '<div class="rp-cycle"><b>Vòng khắc chế (x2 sát thương)</b>💧 Nước → 🔥 Lửa → ❄️ Băng → 🌪️ Gió → 🪨 Đá → 💧 Nước</div><div class="rp-infoslot"></div></div>' +
+        '<div class="rp-mapbar"><button type="button" class="rp-btn rp-pur" data-a="inv">🎒 Túi đồ &amp; trang bị</button><button type="button" class="rp-btn rp-pur" data-a="album">🃏 Thẻ kiến thức (' + cards + '/9)</button><button type="button" class="rp-btn rp-ghost" data-a="how">❓ Cách chơi</button></div>', {
+        node: (b) => this.map(+b.dataset.i), inv: () => this.inv(), album: () => this.album(), how: () => this.how(),
+        go: (b) => this.prebattle(+b.dataset.i), equip: (b) => { this.S.eq.w = b.dataset.id; this.save(); this.toast('Đã trang bị ' + IT[b.dataset.id].n); SND('up'); this.map(selIdx); },
+        read: (b) => { if (this.hooks.goArticle) this.hooks.goArticle(b.dataset.id); }
+      });
+      // thông tin ải
+      const st = STAGES[selIdx], lk = !this.unlocked(selIdx), me = this.stats(), weak = WEAK[st.boss.el];
+      const own = Object.keys(this.S.inv).filter((k) => IT[k].t === 'weapon');
+      const best = own.find((k) => IT[k].el === weak);
+      let tip;
+      if (me.el === weak) tip = '<div class="rp-tip ok">✔ Vũ khí đang dùng khắc chế boss: sát thương x2!</div>';
+      else if (best) tip = '<div class="rp-tip">Boss hệ ' + EL[st.boss.el].n + ' yếu trước ' + EL[weak].i + ' ' + EL[weak].n + '. Bạn có <b>' + esc(IT[best].n) + '</b>. <button type="button" class="rp-btn rp-gold" data-a="equip" data-id="' + best + '" style="min-height:32px;margin-top:6px;font-size:13px">Trang bị ngay</button></div>';
+      else tip = '<div class="rp-tip">Boss yếu trước ' + EL[weak].i + ' ' + EL[weak].n + ' nhưng bạn chưa có vũ khí hệ này. Hãy dùng câu hỏi kiến thức để nạp đòn Tối thượng!' + (st.no > 1 ? ' (Thắng ải ' + (st.no - 1) + ' để nhận vũ khí khắc chế.)' : '') + '</div>';
+      el.querySelector('.rp-infoslot').innerHTML = '<div class="rp-info"><div style="display:flex;gap:10px;align-items:center"><canvas class="rp-infocv" width="140" height="140" style="width:70px;height:70px"></canvas><div><h4>' + esc(st.boss.n) + '</h4><div class="row">' + elTag(st.boss.el) + ' <span style="font-size:12px">Đề xuất cấp ' + st.rec + '</span></div></div></div>' +
+        '<p>Ải ' + st.no + ' · theo bài “' + esc(st.article) + '”</p>' +
+        (lk ? '<div class="rp-tip">🔒 Thắng ải trước, hoặc đọc bài “' + esc(st.article) + '” để mở khóa ngay.</div><button type="button" class="rp-btn rp-ghost" data-a="read" data-id="' + st.id + '">📖 Mở bài viết này</button>'
+          : tip + '<button type="button" class="rp-btn rp-gold rp-big rp-pulse" data-a="go" data-i="' + selIdx + '">⚔️ VÀO TRẬN</button>') + '</div>';
+      // vẽ boss nhỏ
+      const cvs = Array.from(el.querySelectorAll('.rp-node canvas')).concat([el.querySelector('.rp-infocv')]);
+      const t0 = performance.now(), tok = this.tok;
+      const step = (ts) => {
+        if (tok !== this.tok) return; const t = (ts - t0) / 1000;
+        cvs.forEach((cv, i) => { const g = cv.getContext('2d'), s = STAGES[i < 3 ? i : selIdx], W = cv.width; g.clearRect(0, 0, W, W); drawBoss(g, { x: W / 2, y: W * 0.56, r: W * 0.27, color: s.boss.color, shape: s.boss.shape, flash: 0 }, t + i); });
+        this.raf = requestAnimationFrame(step);
+      };
+      this.raf = requestAnimationFrame(step);
+    }
+    how() {
+      this.screen('<div class="rp-panel"><div class="rp-h2">❓ Cách chơi</div><div class="rp-note" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);color:#FFFFFF"><ul>' +
+        '<li><b>Đánh theo lượt:</b> mỗi lượt chọn Tấn công, Kỹ năng (tốn năng lượng), Phòng thủ (giảm 50% đòn, hồi năng lượng), Kiến thức hoặc Vật phẩm. Sau đó tới lượt boss.</li>' +
+        '<li><b>5 hệ khắc chế:</b> Nước → Lửa → Băng → Gió → Đá → Nước. Đánh đúng hệ khắc chế: sát thương x2; đánh vào hệ khắc mình: x0,5. Hệ của bạn theo vũ khí đang cầm.</li>' +
+        '<li><b>Hiệu ứng:</b> 🔥 thiêu đốt (mất máu mỗi lượt), ❄️ đóng băng (mất lượt), 🪨 phá giáp, 🌪️ né đòn, 💧 hồi máu/giải hiệu ứng. Boss có thể làm bạn thiêu đốt, yếu giáp hoặc choáng.</li>' +
+        '<li><b>⚠ Boss tụ lực:</b> lượt sau boss tung đòn rất mạnh, hãy Phòng thủ hoặc dùng Giáp Đá.</li>' +
+        '<li><b>📚 Kiến thức:</b> trả lời câu Đúng/Sai theo bài. Đúng: nạp 50% đòn Tối thượng, +2 năng lượng, đòn kế tiếp chắc chắn chí mạng. Khi boss còn nửa máu sẽ có <b>câu hỏi sinh tồn</b>.</li>' +
+        '<li><b>Rương:</b> thắng boss mở rương. Càng nhiều sao rương càng xịn. Có vũ khí, bùa, vật phẩm và Thẻ kiến thức (bác sĩ duyệt).</li>' +
+        '<li>Tiến trình được lưu trên trình duyệt. Ải của bài bạn đang đọc luôn mở sẵn.</li></ul></div>' +
+        '<div style="margin-top:12px"><button type="button" class="rp-btn rp-gold" data-a="back">← Về bản đồ</button></div></div>', { back: () => this.map() });
+    }
+
+    /* ---------- TÚI ĐỒ ---------- */
+    inv(sel) {
+      const S = this.S, me = this.stats();
+      const slot = (lbl, it) => '<div class="rp-slot" style="--rc:' + (it ? RAR[it.r].c : '#5A3CC8') + '"><span class="ic">' + (it ? it.i : '—') + '</span><div><small>' + lbl + '</small><b>' + (it ? esc(it.n) : 'Chưa trang bị') + '</b><div style="margin-top:3px">' + (it ? (it.el ? elTag(it.el) + ' ' : '') + rarTag(it.r) : '') + '</div></div></div>';
+      const items = Object.keys(S.inv).filter((k) => S.inv[k] > 0).sort((a, b) => 'lerc'.indexOf(IT[a].r) - 'lerc'.indexOf(IT[b].r)).map((k) => {
+        const it = IT[k], on = S.eq.w === k || S.eq.c === k;
+        const desc = it.t === 'weapon' ? 'Công +' + it.atk + ' · Kỹ năng: ' + it.sk.map((s) => SK[s].n).join(', ') : it.d;
+        return '<button type="button" class="rp-item ' + it.r + '" style="--rc:' + RAR[it.r].c + '" data-a="pick" data-id="' + k + '"><span class="ic">' + it.i + '</span><b>' + esc(it.n) + '</b><span>' + (it.el ? elTag(it.el) + ' ' : '') + rarTag(it.r) + '</span><small>' + esc(desc) + '</small>' + (on ? '<span class="on">ĐANG DÙNG</span>' : it.t === 'potion' ? '<span class="cnt">x' + S.inv[k] + '</span>' : '') + '</button>';
+      }).join('');
+      this.screen('<div class="rp-panel"><div class="rp-h2">🎒 Túi đồ &amp; trang bị</div>' +
+        '<div class="rp-eq">' + slot('VŨ KHÍ (quyết định hệ)', me.w) + slot('BÙA', me.c) + '<div class="rp-statbox"><span>Máu: <b>' + me.hp + '</b></span><span>Công: <b>' + me.atk + '</b></span><span>Thủ: <b>' + me.def + '</b></span><span>Chí mạng: <b>' + Math.round(me.crit * 100) + '%</b></span><span>Hệ: <b>' + EL[me.el].i + ' ' + EL[me.el].n + '</b></span><span>Cấp: <b>' + S.lv + '</b></span></div></div>' +
+        '<div class="rp-grid">' + items + '</div><p class="rp-small" style="margin-top:10px">Bấm vũ khí hoặc bùa để trang bị. Vật phẩm (bình, bùa ngủ) dùng trong trận.</p>' +
+        '<div><button type="button" class="rp-btn rp-gold" data-a="back">← Về bản đồ</button></div></div>', {
+        back: () => this.map(),
+        pick: (b) => { const id = b.dataset.id, it = IT[id]; if (it.t === 'weapon') { S.eq.w = id; } else if (it.t === 'charm') { S.eq.c = S.eq.c === id ? null : id; } else { this.toast(it.n + ': dùng trong trận đấu'); return; } this.save(); SND('up'); this.toast((it.t === 'charm' && S.eq.c !== id) ? 'Đã tháo ' + it.n : 'Đã trang bị ' + it.n); this.inv(); }
+      });
+    }
+    album() {
+      const cards = STAGES.map((st) => st.cards.map((c, i) => {
+        const has = this.S.cards.includes(st.id + '-' + i);
+        return has ? '<div class="rp-card" style="--c:' + EL[st.boss.el].c + '"><b>Thẻ ' + st.no + '.' + (i + 1) + ' · ' + esc(st.place) + '</b><span>' + esc(c.t) + '</span><small>→ Xem trong bài: mục “' + esc(c.sec) + '”</small></div>'
+          : '<div class="rp-card lock"><span style="font-size:34px">🃏</span><b style="color:#BDB3F0">Thẻ ' + st.no + '.' + (i + 1) + '</b><span>Mở rương ở ' + esc(st.place) + ' để nhận</span></div>';
+      }).join('')).join('');
+      this.screen('<div class="rp-panel"><div class="rp-h2">🃏 Thẻ kiến thức (' + this.S.cards.length + '/9)</div><p class="rp-small" style="margin:0 0 10px">Mỗi thẻ là một điều quan trọng trong bài viết, do bác sĩ duyệt. Sưu tầm đủ bộ để mở khóa áo choàng huyền thoại cho Mimo (bản mở rộng).</p><div class="rp-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">' + cards + '</div><div style="margin-top:12px"><button type="button" class="rp-btn rp-gold" data-a="back">← Về bản đồ</button></div></div>', { back: () => this.map() });
+    }
+    prebattle(i) { this.ev('game_stage_start', { stage: STAGES[i].id }); this.battle(i); }
+
+    /* ---------- TRẬN ĐẤU ---------- */
+    battle(i) {
+      const st = STAGES[i], me = this.stats(), f = Math.min(1, 0.6 + 0.4 * this.S.lv / st.rec);
+      const B = this.B = { st, i, hp: Math.round(st.boss.hp * f), max: Math.round(st.boss.hp * f), atk: st.boss.atk * f, def: st.boss.def, el: st.boss.el, burn: 0, frz: 0, brk: 0, stun: 0, charging: false, lastCharge: -3, turn: 0, enraged: false, flash: 0, dead: false, alpha: 1 };
+      const P = this.P = { hp: me.hp, max: me.hp, atk: me.atk, def: me.def, crit: me.crit, red: me.red, regen: me.regen, el: me.el, w: me.w, en: 4, ult: 0, burn: 0, weak: 0, stun: 0, guard: 0, dodge: 0, sure: false, quizUsed: [], quizOk: 0, emgDone: false, emgOk: null, wrong: [] };
+      const el = this.screen('<div class="rp-arena" style="--bg:' + st.bg + '"><div class="rp-floor" style="right:7%;top:56%;width:320px;height:60px"></div><div class="rp-floor" style="left:8%;bottom:3%;width:240px;height:50px"></div>' +
+        '<canvas class="rp-bosscv" width="600" height="524"></canvas>' +
+        '<div class="rp-hero rp-mimo" data-mood="fight" style="--c:' + EL[P.el].c + '">' + mimoSVG(EL[P.el].c) + '<span class="wpn">' + P.w.i + '</span></div>' +
+        '<div class="rp-hp boss"><div class="nm">👑 ' + esc(st.boss.n) + ' ' + elTag(B.el) + '</div><div class="rp-bar hp"><i class="gh"></i><i class="fg"></i></div><div class="rp-hpn"><span class="v"></span><span>Hệ yếu: ' + EL[WEAK[B.el]].i + '</span></div><div class="rp-sts"></div></div>' +
+        '<div class="rp-hp me"><div class="nm">Mimo · Cấp ' + this.S.lv + ' ' + elTag(P.el) + '</div><div class="rp-bar hp"><i class="gh"></i><i class="fg"></i></div><div class="rp-hpn"><span class="v"></span><span>' + P.w.i + ' ' + esc(P.w.n) + '</span></div><div class="rp-sts"></div></div>' +
+        '<div class="rp-chargeslot"></div><div class="rp-fx"></div><div class="rp-flash"></div></div>' +
+        '<div class="rp-ctl"><div class="rp-log" aria-live="polite"></div><div class="rp-bars"><label>⚡ Năng lượng <span class="rp-bar en"><i class="fg"></i></span></label><label>🌟 Tối thượng <span class="rp-bar ul"><i class="fg"></i></span></label></div><div class="rp-menu"></div></div>', {
+        atk: () => this.turn('atk'), skm: () => this.menu('sk'), def: () => this.turn('def'), quiz: () => this.turn('quiz'), itm: () => this.menu('it'), ult: () => this.turn('ult'),
+        sk: (b) => this.turn('sk', b.dataset.id), use: (b) => this.turn('item', b.dataset.id), backm: () => this.menu('main'), flee: () => { this.ev('game_flee', { stage: st.id }); this.map(i); }
+      }, (e) => { if (this.busy) return; const m = { 1: 'atk', 2: 'skm', 3: 'def', 4: 'quiz', 5: 'itm', 6: 'ult' }[e.key]; if (m && this.curMenu === 'main') { const b = this.main.querySelector('[data-a=' + m + ']'); if (b && !b.disabled) { e.preventDefault(); b.click(); } } });
+      this.E = { arena: el.querySelector('.rp-arena'), cv: el.querySelector('.rp-bosscv'), hero: el.querySelector('.rp-hero'), bHp: el.querySelector('.rp-hp.boss'), pHp: el.querySelector('.rp-hp.me'), fx: el.querySelector('.rp-fx'), flash: el.querySelector('.rp-flash'), log: el.querySelector('.rp-log'), menu: el.querySelector('.rp-menu'), en: el.querySelector('.rp-bar.en .fg'), ul: el.querySelector('.rp-bar.ul .fg'), charge: el.querySelector('.rp-chargeslot') };
+      this.paint(); this.menu('main'); this.log('Một <b>' + esc(st.boss.n) + '</b> hoang dã xuất hiện! Boss hệ ' + EL[B.el].i + ' ' + EL[B.el].n + ', yếu trước ' + EL[WEAK[B.el]].i + ' ' + EL[WEAK[B.el]].n + '.');
+      SND('roar'); this.busy = false;
+      const ctx = this.E.cv.getContext('2d'), t0 = performance.now(), tok = this.tok;
+      const draw = (ts) => {
+        if (tok !== this.tok) return; const t = (ts - t0) / 1000, W = 600, Hh = 524;
+        ctx.clearRect(0, 0, W, Hh);
+        if (B.charging) { ctx.save(); ctx.globalAlpha = 0.35 + 0.25 * Math.sin(t * 10); const g = ctx.createRadialGradient(300, 280, 60, 300, 280, 260); g.addColorStop(0, 'rgba(255,60,60,.8)'); g.addColorStop(1, 'rgba(255,60,60,0)'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, Hh); ctx.restore(); }
+        ctx.save(); ctx.globalAlpha = B.alpha;
+        const sh = B.shake > 0 ? (B.shake -= 1, rand(-10, 10)) : 0;
+        drawBoss(ctx, { x: 300 + sh + (B.stun > 0 || B.frz > 0 ? 0 : Math.sin(t * 1.3) * 10), y: 290 + Math.sin(t * 2) * 10 + (B.dead ? (1 - B.alpha) * 60 : 0), r: B.enraged ? 132 : 122, color: B.enraged ? shade(st.boss.color, -25) : st.boss.color, shape: st.boss.shape, flash: B.flash-- > 0 ? 1 : 0, dead: B.dead }, t);
+        ctx.restore();
+        if (B.frz > 0) { ctx.save(); ctx.globalAlpha = 0.45; ctx.fillStyle = '#9BE7FF'; ctx.beginPath(); ctx.arc(300, 290, 170, 0, 6.29); ctx.fill(); ctx.globalAlpha = 0.9; ctx.strokeStyle = '#FFFFFF'; ctx.lineWidth = 4; for (let k = 0; k < 6; k++) { const a = k * 1.047; ctx.beginPath(); ctx.moveTo(300 + Math.cos(a) * 60, 290 + Math.sin(a) * 60); ctx.lineTo(300 + Math.cos(a) * 165, 290 + Math.sin(a) * 165); ctx.stroke(); } ctx.restore(); }
+        if (B.burn > 0) { for (let k = 0; k < 5; k++) { const fx = 220 + k * 40, fy = 400 - ((t * 120 + k * 37) % 120); ctx.globalAlpha = 0.8 - ((t * 120 + k * 37) % 120) / 150; ctx.fillStyle = k % 2 ? '#FF9F1C' : '#FF4D2E'; ctx.beginPath(); ctx.ellipse(fx, fy, 10, 18, 0, 0, 6.29); ctx.fill(); } ctx.globalAlpha = 1; }
+        if (B.stun > 0) { ctx.font = '700 40px Arial'; ctx.textAlign = 'center'; for (let k = 0; k < 3; k++) { const a = t * 3 + k * 2.09; ctx.fillText('⭐', 300 + Math.cos(a) * 90, 120 + Math.sin(a) * 20); } }
+        this.raf = requestAnimationFrame(draw);
+      };
+      this.raf = requestAnimationFrame(draw);
+    }
+    log(h) { this.E.log.innerHTML = h; }
+    paint() {
+      const B = this.B, P = this.P, E = this.E;
+      const hp = (box, v, m) => { const p = Math.max(0, v / m * 100), col = p > 50 ? '#12B76A' : p > 25 ? '#F79009' : '#E0464E'; box.querySelector('.fg').style.width = p + '%'; box.querySelector('.fg').style.background = 'linear-gradient(90deg,' + col + ',' + shade(col, 40) + ')'; box.querySelector('.gh').style.width = p + '%'; box.querySelector('.v').textContent = Math.max(0, Math.ceil(v)) + ' / ' + m; };
+      hp(E.bHp, B.hp, B.max); hp(E.pHp, P.hp, P.max);
+      const bs = []; if (B.burn) bs.push('🔥 Thiêu đốt ' + B.burn); if (B.frz) bs.push('❄️ Đóng băng'); if (B.brk) bs.push('🪨 Vỡ giáp ' + B.brk); if (B.stun) bs.push('💫 Choáng'); if (B.enraged) bs.push('😡 Nổi giận');
+      E.bHp.querySelector('.rp-sts').innerHTML = bs.map((s) => '<span>' + s + '</span>').join('');
+      const ps = []; if (P.burn) ps.push('🔥 Thiêu đốt ' + P.burn); if (P.weak) ps.push('🧪 Yếu giáp ' + P.weak); if (P.stun) ps.push('💫 Choáng'); if (P.guard) ps.push('🛡️ Phòng thủ ' + P.guard); if (P.dodge) ps.push('🌪️ Né đòn ' + P.dodge); if (P.sure) ps.push('🎯 Chí mạng chắc chắn');
+      E.pHp.querySelector('.rp-sts').innerHTML = ps.map((s) => '<span>' + s + '</span>').join('');
+      E.en.style.width = (P.en / 10 * 100) + '%'; E.ul.style.width = P.ult + '%';
+      E.hero.classList.toggle('guard', P.guard > 0); E.hero.classList.toggle('dodge', P.dodge > 0);
+      E.hero.setAttribute('data-mood', P.hp / P.max < 0.3 ? 'worried' : 'fight');
+      E.charge.innerHTML = B.charging ? '<div class="rp-charge">⚠ BOSS ĐANG TỤ LỰC!</div>' : '';
+    }
+    menu(m) {
+      this.curMenu = m; const P = this.P, st = this.B.st;
+      if (m === 'main') {
+        const qLeft = st.quiz.length - P.quizUsed.length, pots = (this.S.inv.p_heal || 0) + (this.S.inv.p_clean || 0);
+        this.E.menu.innerHTML = '<div class="rp-acts">' +
+          '<button type="button" class="rp-act" data-a="atk"><i>⚔️</i>Tấn công<small>' + EL[P.el].i + ' +1 năng lượng</small></button>' +
+          '<button type="button" class="rp-act" data-a="skm"><i>✨</i>Kỹ năng<small>tốn năng lượng</small></button>' +
+          '<button type="button" class="rp-act" data-a="def"><i>🛡️</i>Phòng thủ<small>-50% đòn · +2 ⚡</small></button>' +
+          '<button type="button" class="rp-act" data-a="quiz"' + (qLeft ? '' : ' disabled') + '><i>📚</i>Kiến thức<small>' + (qLeft ? 'còn ' + qLeft + ' câu' : 'hết câu') + '</small></button>' +
+          '<button type="button" class="rp-act" data-a="itm"' + (pots ? '' : ' disabled') + '><i>🧴</i>Vật phẩm<small>' + pots + ' món</small></button>' +
+          '<button type="button" class="rp-act' + (P.ult >= 100 ? ' ult' : '') + '" data-a="ult"' + (P.ult >= 100 ? '' : ' disabled') + '><i>🌟</i>Tối thượng<small>' + Math.floor(P.ult) + '%</small></button></div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px"><span class="rp-small">Phím tắt 1–6 · Hệ của bạn: ' + EL[P.el].i + ' ' + EL[P.el].n + '</span><button type="button" class="rp-btn rp-ghost" data-a="flee" style="min-height:30px;font-size:12px;padding:0 10px">🏃 Rút lui</button></div>';
+      } else if (m === 'sk') {
+        this.E.menu.innerHTML = '<div class="rp-sub">' + P.w.sk.map((k) => { const s = SK[k]; return '<button type="button" class="rp-act" data-a="sk" data-id="' + k + '"' + (P.en >= s.cost ? '' : ' disabled') + '><i>' + EL[s.el].i + '</i><span><b>' + s.n + ' · ' + s.cost + ' ⚡</b><small>' + s.d + '</small></span></button>'; }).join('') + '<button type="button" class="rp-act" data-a="backm"><i>↩</i><span><b>Quay lại</b></span></button></div>';
+      } else {
+        this.E.menu.innerHTML = '<div class="rp-sub">' + ['p_heal', 'p_clean'].map((k) => '<button type="button" class="rp-act" data-a="use" data-id="' + k + '"' + ((this.S.inv[k] || 0) > 0 ? '' : ' disabled') + '><i>' + IT[k].i + '</i><span><b>' + IT[k].n + ' x' + (this.S.inv[k] || 0) + '</b><small>' + IT[k].d + '</small></span></button>').join('') + '<button type="button" class="rp-act" data-a="backm"><i>↩</i><span><b>Quay lại</b></span></button></div>';
+      }
+    }
+    lock(on) { this.busy = on; if (on) this.E.menu.querySelectorAll('button').forEach((b) => { b.disabled = true; }); }
+
+    /* hiệu ứng */
+    center(node) { const a = this.E.arena.getBoundingClientRect(), r = node.getBoundingClientRect(), k = a.width / this.E.arena.offsetWidth || 1; return { x: (r.left - a.left + r.width / 2) / k, y: (r.top - a.top + r.height / 2) / k }; }
+    num(node, txt, col, sub) { const p = this.center(node); const d = document.createElement('div'); d.className = 'rp-num'; d.style.left = (p.x - 100) + 'px'; d.style.top = (p.y - 60) + 'px'; d.style.width = '200px'; d.style.color = col; d.innerHTML = esc(txt) + (sub ? '<small>' + esc(sub) + '</small>' : ''); this.E.fx.appendChild(d); d.animate([{ transform: 'translateY(10px) scale(.5)', opacity: 0 }, { transform: 'translateY(-10px) scale(1.2)', opacity: 1, offset: 0.25 }, { transform: 'translateY(-60px) scale(1)', opacity: 0 }], { duration: 1200, easing: 'ease-out' }); setTimeout(() => d.remove(), 1200); }
+    burst(node, col, n) { if (reduced()) return; const p = this.center(node); for (let i = 0; i < (n || 18); i++) { const s = document.createElement('span'); s.className = 'rp-pt'; s.style.left = p.x + 'px'; s.style.top = p.y + 'px'; s.style.background = Array.isArray(col) ? pick(col) : col; const a = rand(0, 6.28), r = rand(50, 140); this.E.fx.appendChild(s); s.animate([{ transform: 'translate(0,0) scale(1)', opacity: 1 }, { transform: 'translate(' + Math.cos(a) * r + 'px,' + Math.sin(a) * r + 'px) scale(.2)', opacity: 0 }], { duration: rand(500, 900), easing: 'cubic-bezier(.2,.8,.3,1)' }); setTimeout(() => s.remove(), 950); } }
+    proj(from, to, el) { return new Promise((res) => { const a = this.center(from), b = this.center(to); const d = document.createElement('div'); d.className = 'rp-proj'; d.style.left = a.x + 'px'; d.style.top = a.y + 'px'; d.style.background = 'radial-gradient(circle,#FFFFFF,' + EL[el].c + ' 60%,transparent 72%)'; d.textContent = EL[el].i; this.E.fx.appendChild(d); SND('whoosh'); const an = d.animate([{ transform: 'translate(0,0) scale(.6) rotate(0)' }, { transform: 'translate(' + (b.x - a.x) + 'px,' + (b.y - a.y) + 'px) scale(1.3) rotate(540deg)' }], { duration: reduced() ? 120 : 420, easing: 'cubic-bezier(.4,0,.6,1)' }); an.onfinish = () => { d.remove(); res(); }; }); }
+    flash(col) { if (reduced()) return; const f = this.E.flash; f.style.background = col; f.animate([{ opacity: 0.7 }, { opacity: 0 }], { duration: 400 }); }
+    shakeArena() { if (reduced()) return; this.E.arena.animate([{ transform: 'translate(0,0)' }, { transform: 'translate(-10px,4px)' }, { transform: 'translate(8px,-4px)' }, { transform: 'translate(-5px,2px)' }, { transform: 'translate(0,0)' }], { duration: 380 }); }
+    heroAnim(c) { const h = this.E.hero; h.classList.remove('dash', 'hurt'); void h.offsetWidth; h.classList.add(c); }
+
+    calc(att, def, pow, aEl, dEl, crit, extra) {
+      const m = em(aEl, dEl), isCrit = Math.random() < crit;
+      const v = Math.max(1, Math.round((att * pow * rand(0.9, 1.1) - def * 0.5) * m * (isCrit ? 1.6 : 1) * (extra || 1)));
+      return { v, m, isCrit };
+    }
+    async hitBoss(pow, el, opts) {
+      const P = this.P, B = this.B; opts = opts || {};
+      await this.proj(this.E.hero, this.E.cv, el);
+      const crit = P.sure ? 1 : P.crit + (opts.crit || 0); P.sure = false;
+      const r = this.calc(P.atk, B.brk ? 0 : B.def, pow, el, B.el, crit, (B.brk ? 1.25 : 1) * (B.stun ? 2 : 1) * (opts.mult || 1));
+      B.hp -= r.v; B.flash = 6; B.shake = 12; P.ult = Math.min(100, P.ult + (opts.noUlt ? 0 : 12));
+      SND(r.isCrit ? 'crit' : 'hit'); this.burst(this.E.cv, [EL[el].c, '#FFFFFF', '#FFD84D'], r.isCrit ? 30 : 18);
+      this.num(this.E.cv, (r.isCrit ? 'CHÍ MẠNG! ' : '') + '-' + r.v, r.isCrit ? '#FFD84D' : '#FFFFFF', r.m === 2 ? 'HIỆU QUẢ CAO! x2' : r.m === 0.5 ? 'Không hiệu quả x0,5' : '');
+      if (r.isCrit) this.shakeArena();
+      this.paint(); return r;
+    }
+    async turn(kind, arg) {
+      if (this.busy) return; const P = this.P, B = this.B, st = B.st, tok0 = this.tok; this.lock(true);
+      let ok = true;
+      if (kind === 'atk') { this.heroAnim('dash'); const r = await this.hitBoss(1, P.el); P.en = Math.min(10, P.en + 1); this.log('Mimo tấn công gây <b>' + r.v + '</b> sát thương.' + (r.m === 2 ? ' Khắc chế hệ!' : '')); }
+      else if (kind === 'sk') {
+        const s = SK[arg]; P.en -= s.cost; this.heroAnim('dash');
+        let msg = 'Mimo dùng <b>' + s.n + '</b>';
+        if (s.pow) { const r = await this.hitBoss(s.pow, s.el, { crit: s.crit }); msg += ' gây <b>' + r.v + '</b> sát thương'; }
+        if (s.burn && Math.random() < s.burn) { B.burn = 3; msg += ', boss bị 🔥 thiêu đốt'; }
+        if (s.frz && Math.random() < s.frz) { B.frz = 1; msg += ', boss bị ❄️ đóng băng'; }
+        if (s.brk && Math.random() < s.brk) { B.brk = 3; msg += ', 🪨 phá giáp boss'; }
+        if (s.heal) { const v = Math.round(P.max * s.heal); P.hp = Math.min(P.max, P.hp + v); SND('heal'); this.burst(this.E.hero, ['#7CE0B5', '#3BA3FF', '#FFFFFF'], 20); this.num(this.E.hero, '+' + v, '#7CE0B5'); msg += ', hồi <b>' + v + '</b> máu'; }
+        if (s.cleanse) { P.burn = 0; P.weak = 0; P.stun = 0; }
+        if (s.guard) { P.guard = s.guard; msg += ', dựng 🛡️ Giáp Đá'; SND('up'); }
+        if (s.dodge) { P.dodge = s.dodge; msg += ', vào thế 🌪️ né đòn'; }
+        this.log(msg + '.');
+      }
+      else if (kind === 'def') { P.guard = Math.max(P.guard, 1); P.en = Math.min(10, P.en + 2); SND('up'); this.log('Mimo vào thế <b>phòng thủ</b> (giảm 50% sát thương lượt này, +2 năng lượng).'); }
+      else if (kind === 'item') {
+        const it = IT[arg]; this.S.inv[arg]--; if (!this.S.inv[arg]) delete this.S.inv[arg]; this.save();
+        const v = Math.round(P.max * (arg === 'p_heal' ? 0.4 : 0.15)); P.hp = Math.min(P.max, P.hp + v); if (arg === 'p_clean') { P.burn = 0; P.weak = 0; P.stun = 0; }
+        SND('heal'); this.burst(this.E.hero, ['#7CE0B5', '#FFFFFF'], 20); this.num(this.E.hero, '+' + v, '#7CE0B5'); this.log('Mimo dùng <b>' + it.n + '</b>, hồi ' + v + ' máu.');
+      }
+      else if (kind === 'quiz') {
+        const pool = st.quiz.filter((q) => !P.quizUsed.includes(q.q)); const Q = pick(pool); P.quizUsed.push(Q.q);
+        const right = await this.ask(Q);
+        this.ev('game_quiz', { stage: st.id, correct: right });
+        if (right) { P.quizOk++; P.ult = Math.min(100, P.ult + 50); P.en = Math.min(10, P.en + 2); P.sure = true; SND('up'); this.burst(this.E.hero, ['#FFD84D', '#FFFFFF'], 24); this.log('Trả lời đúng! <b>+50% Tối thượng</b>, +2 năng lượng, đòn kế tiếp chắc chắn chí mạng.'); }
+        else { P.wrong.push(Q); SND('bad'); this.log('Chưa đúng, nhưng giờ bạn đã biết thêm một điều!'); }
+      }
+      else if (kind === 'ult') {
+        P.ult = 0; SND('ult'); await this.cutin(ULT[P.el], P.el);
+        let tot = 0; for (let k = 0; k < 3; k++) { const r = await this.hitBoss(1.35, P.el, { noUlt: true, mult: 1 }); tot += r.v; if (!(await this.wait(120))) return; }
+        if (P.el === 'fire') B.burn = 3; if (P.el === 'ice') B.frz = 1; if (P.el === 'rock') B.brk = 3; if (P.el === 'water') { const v = Math.round(P.max * 0.25); P.hp = Math.min(P.max, P.hp + v); } if (P.el === 'wind') P.dodge = 2;
+        this.flash('#FFFFFF'); this.shakeArena(); this.log('<b>' + ULT[P.el] + '!</b> Tổng cộng <b>' + tot + '</b> sát thương!');
+      }
+      this.paint();
+      if (!(await this.wait(650))) return;
+      if (B.hp <= 0) { this.victory(); return; }
+      if (!P.emgDone && B.hp / B.max <= 0.5) { P.emgDone = true; ok = await this.survive(); if (!ok && P.hp <= 0) { this.defeat(); return; } if (!(await this.wait(300))) return; }
+      if (!B.enraged && B.hp / B.max <= 0.5) { B.enraged = true; B.atk *= 1.2; SND('roar'); this.shakeArena(); this.log('😡 <b>' + esc(st.boss.n) + '</b> nổi giận! Sức tấn công tăng.'); this.paint(); if (!(await this.wait(900))) return; }
+      await this.bossTurn();
+      if (tok0 !== this.tok) return;
+      if (P.hp <= 0) { this.defeat(); return; }
+      if (B.hp <= 0) { this.victory(); return; }
+      // bắt đầu lượt người chơi
+      P.en = Math.min(10, P.en + 1);
+      if (P.regen) { const v = Math.round(P.max * P.regen); P.hp = Math.min(P.max, P.hp + v); this.num(this.E.hero, '+' + v, '#7CE0B5'); }
+      if (P.burn) { const v = Math.round(P.max * 0.05); P.hp -= v; P.burn--; this.num(this.E.hero, '-' + v, '#FF9F1C', 'Thiêu đốt'); }
+      if (P.weak) P.weak--; if (P.guard) P.guard--; if (P.dodge) P.dodge--;
+      this.paint();
+      if (P.hp <= 0) { this.defeat(); return; }
+      if (P.stun) { P.stun = 0; this.log('💫 Mimo bị choáng, mất lượt này!'); this.paint(); if (!(await this.wait(1000))) return; await this.bossTurn(); if (tok0 !== this.tok) return; if (P.hp <= 0) { this.defeat(); return; } if (B.hp <= 0) { this.victory(); return; } }
+      this.menu('main'); this.lock(false);
+    }
+    async bossTurn() {
+      const B = this.B, P = this.P, st = B.st;
+      if (B.burn) { const v = Math.round(B.max * 0.06); B.hp -= v; B.burn--; this.num(this.E.cv, '-' + v, '#FF9F1C', 'Thiêu đốt'); this.paint(); if (!(await this.wait(500))) return; if (B.hp <= 0) return; }
+      if (B.brk) B.brk--;
+      if (B.stun) { B.stun--; this.log('💫 Boss đang choáng, không thể hành động!'); this.paint(); await this.wait(800); return; }
+      if (B.frz) { B.frz = 0; this.log('❄️ Boss bị đóng băng, mất lượt!'); this.paint(); await this.wait(800); return; }
+      B.turn++;
+      let mv;
+      if (B.charging) { mv = st.boss.moves[2]; B.charging = false; }
+      else if (B.turn - B.lastCharge >= 3 && Math.random() < 0.3) { B.charging = true; B.lastCharge = B.turn; SND('charge'); this.log('⚠ <b>' + esc(st.boss.n) + '</b> đang tụ lực! Lượt sau sẽ tung <b>' + st.boss.moves[2].n + '</b>, hãy Phòng thủ!'); this.paint(); await this.wait(1100); return; }
+      else mv = Math.random() < 0.4 ? st.boss.moves[1] : st.boss.moves[0];
+      this.log('<b>' + esc(st.boss.n) + '</b> dùng <b>' + mv.n + '</b>!');
+      B.shake = 6; await this.proj(this.E.cv, this.E.hero, B.el);
+      if (P.dodge && Math.random() < 0.5) { this.num(this.E.hero, 'NÉ!', '#7CE0B5'); SND('whoosh'); this.log('🌪️ Mimo né được <b>' + mv.n + '</b>!'); this.paint(); await this.wait(700); return; }
+      const r = this.calc(B.atk, P.def, mv.pow, B.el, P.el, 0.08, (1 - P.red) * (P.guard ? 0.5 : 1) * (P.weak ? 1.3 : 1));
+      P.hp -= r.v; this.heroAnim('hurt'); SND('hurt'); this.burst(this.E.hero, [EL[B.el].c, '#FFFFFF'], 16);
+      if (mv.heavy) { this.shakeArena(); this.flash('rgba(255,60,60,.6)'); }
+      this.num(this.E.hero, '-' + r.v, '#FF6B6B', r.m === 0.5 ? 'Kháng hệ x0,5' : r.m === 2 ? 'Bị khắc chế x2' : (P.guard ? 'Đã phòng thủ' : ''));
+      let extra = '';
+      if (mv.eff === 'burn' && Math.random() < 0.6) { P.burn = 3; extra = ' Mimo bị 🔥 thiêu đốt!'; }
+      if (mv.eff === 'weak' && Math.random() < 0.6) { P.weak = 3; extra = ' Mimo bị 🧪 yếu giáp!'; }
+      if (mv.eff === 'stun' && Math.random() < (mv.ch || 0.25)) { P.stun = 1; extra = ' Mimo bị 💫 choáng!'; }
+      this.log('<b>' + esc(st.boss.n) + '</b> dùng <b>' + mv.n + '</b> gây <b>' + r.v + '</b> sát thương.' + extra);
+      this.paint(); await this.wait(750);
+    }
+    cutin(name, el) {
+      return new Promise((res) => {
+        const d = document.createElement('div'); d.className = 'rp-cut'; d.innerHTML = '<div style="background:linear-gradient(90deg,transparent,' + EL[el].c + ' 20%,' + shade(EL[el].c, -50) + ' 80%,transparent)">' + EL[el].i + ' ' + esc(name) + ' ' + EL[el].i + '</div>';
+        this.E.arena.appendChild(d); this.flash(EL[el].c);
+        const an = d.firstChild.animate([{ transform: 'skewY(-6deg) translateX(-100%)', opacity: 0 }, { transform: 'skewY(-6deg) translateX(0)', opacity: 1, offset: 0.25 }, { transform: 'skewY(-6deg) translateX(0)', opacity: 1, offset: 0.75 }, { transform: 'skewY(-6deg) translateX(100%)', opacity: 0 }], { duration: reduced() ? 300 : 1300, easing: 'ease-in-out' });
+        an.onfinish = () => { d.remove(); res(); };
+      });
+    }
+    ask(Q) {
+      return new Promise((res) => {
+        const m = document.createElement('div'); m.className = 'rp-modal';
+        const C = 2 * Math.PI * 22;
+        m.innerHTML = '<div class="rp-q" role="dialog" aria-label="Câu hỏi kiến thức"><svg class="rp-clock" viewBox="0 0 54 54"><circle class="bgc" cx="27" cy="27" r="26"/><circle class="bg" cx="27" cy="27" r="22"/><circle class="fg" cx="27" cy="27" r="22" stroke-dasharray="' + C + '" stroke-dashoffset="0"/><text x="27" y="33" text-anchor="middle">12</text></svg><div class="rp-qt">📚 CÂU HỎI KIẾN THỨC</div><div class="rp-qq">' + esc(Q.q) + '</div><div class="rp-tfr"><button type="button" class="rp-tf t" data-v="1">✔ ĐÚNG</button><button type="button" class="rp-tf f" data-v="0">✖ SAI</button></div><div class="slot"></div></div>';
+        this.E.arena.parentNode.appendChild(m);
+        const fg = m.querySelector('.fg'), tx = m.querySelector('text'), t0 = performance.now(), LIM = 12000; let done = false;
+        const fin = (ans) => {
+          if (done) return; done = true; clearInterval(iv); const right = ans === Q.a;
+          m.querySelectorAll('.rp-tf').forEach((b) => { b.disabled = true; if ((b.dataset.v === '1') === Q.a) b.classList.add('rp-right'); else if (ans !== null) b.classList.add('rp-wrong'); });
+          m.querySelector('.slot').innerHTML = '<div class="rp-exp ' + (right ? 'ok' : 'no') + '"><b>' + (right ? 'Chính xác!' : ans === null ? 'Hết giờ!' : 'Chưa đúng!') + '</b> ' + esc(Q.exp.replace(/^(Sai!|Đúng!)\s*/, '')) + '</div><button type="button" class="rp-btn rp-gold" style="margin-top:10px;width:100%" data-c="1">Tiếp tục trận đấu</button>';
+          const c = m.querySelector('[data-c]'); c.focus({ preventScroll: true }); c.addEventListener('click', () => { m.remove(); res(right); });
+        };
+        m.querySelectorAll('.rp-tf').forEach((b) => b.addEventListener('click', () => fin(b.dataset.v === '1')));
+        const iv = setInterval(() => { const el = performance.now() - t0; fg.setAttribute('stroke-dashoffset', String(C * Math.min(1, el / LIM))); tx.textContent = String(Math.max(0, Math.ceil((LIM - el) / 1000))); if (el >= LIM) fin(null); if (!document.body.contains(m)) clearInterval(iv); }, 100);
+        m.querySelector('.rp-tf').focus({ preventScroll: true });
+      });
+    }
+    survive() {
+      const P = this.P, B = this.B, E = B.st.emg;
+      return new Promise((res) => {
+        const m = document.createElement('div'); m.className = 'rp-modal';
+        const opts = shuffle([{ t: E.ok, ok: true }].concat(E.no.map((t) => ({ t, ok: false }))));
+        const C = 2 * Math.PI * 22;
+        m.innerHTML = '<div class="rp-q red" role="alertdialog" aria-label="Câu hỏi sinh tồn"><svg class="rp-clock" viewBox="0 0 54 54"><circle class="bgc" cx="27" cy="27" r="26"/><circle class="bg" cx="27" cy="27" r="22"/><circle class="fg" cx="27" cy="27" r="22" stroke-dasharray="' + C + '" stroke-dashoffset="0"/><text x="27" y="33" text-anchor="middle">10</text></svg><div class="rp-qt">🚨 CÂU HỎI SINH TỒN</div><div class="rp-qq">' + esc(E.title) + '<br><span style="font-size:15px;font-weight:600">Bạn làm gì ngay?</span></div><div class="rp-choices">' + opts.map((o, i) => '<button type="button" class="rp-choice" data-ok="' + (o.ok ? 1 : 0) + '"><i>' + (i + 1) + '</i><span>' + esc(o.t) + '</span></button>').join('') + '</div><div class="slot"></div></div>';
+        this.E.arena.parentNode.appendChild(m); SND('siren'); const sir = setInterval(() => SND('siren'), 700);
+        this.E.hero.setAttribute('data-mood', 'dizzy');
+        const fg = m.querySelector('.fg'), tx = m.querySelector('text'), t0 = performance.now(), LIM = 10000; let done = false;
+        const keyh = (e) => { if (['1', '2', '3'].includes(e.key)) { const b = m.querySelectorAll('.rp-choice')[+e.key - 1]; if (b && !b.disabled) b.click(); } };
+        this.win.addEventListener('keydown', keyh);
+        const fin = (btn) => {
+          if (done) return; done = true; clearInterval(iv); clearInterval(sir); this.win.removeEventListener('keydown', keyh);
+          const ok = !!btn && btn.dataset.ok === '1'; P.emgOk = ok;
+          m.querySelectorAll('.rp-choice').forEach((b) => { b.disabled = true; if (b.dataset.ok === '1') b.classList.add('rp-right'); });
+          if (btn && !ok) btn.classList.add('rp-wrong');
+          if (ok) { B.stun = 1; P.ult = Math.min(100, P.ult + 30); } else { P.hp -= Math.round(P.max * 0.15); }
+          this.ev('game_emergency_answer', { stage: B.st.id, correct: ok });
+          m.querySelector('.slot').innerHTML = '<div class="rp-exp ' + (ok ? 'ok' : 'no') + '"><b>' + (ok ? 'Chính xác! Boss bị choáng 1 lượt (nhận gấp đôi sát thương), +30% Tối thượng.' : (btn ? 'Chưa đúng!' : 'Hết giờ!') + ' Mimo mất 15% máu.') + '</b><br>' + esc(E.tip) + '</div><button type="button" class="rp-btn rp-gold" style="margin-top:10px;width:100%" data-c="1">Chiến tiếp!</button>';
+          const c = m.querySelector('[data-c]'); c.focus({ preventScroll: true }); c.addEventListener('click', () => { m.remove(); this.paint(); res(ok); });
+        };
+        m.querySelectorAll('.rp-choice').forEach((b) => b.addEventListener('click', () => fin(b)));
+        const iv = setInterval(() => { const el = performance.now() - t0; fg.setAttribute('stroke-dashoffset', String(C * Math.min(1, el / LIM))); tx.textContent = String(Math.max(0, Math.ceil((LIM - el) / 1000))); if (el >= LIM) fin(null); if (!document.body.contains(m)) { clearInterval(iv); clearInterval(sir); } }, 100);
+        m.querySelector('.rp-choice').focus({ preventScroll: true });
+      });
+    }
+
+    /* ---------- KẾT THÚC TRẬN ---------- */
+    async victory() {
+      const B = this.B, P = this.P, st = B.st, S = this.S;
+      B.dead = true; this.lock(true); SND('win'); this.flash('#FFFFFF');
+      for (let k = 0; k < 10; k++) { B.alpha = Math.max(0, 1 - k / 10); this.burst(this.E.cv, [st.boss.color, '#FFD84D', '#FFFFFF'], 14); await this.wait(110); }
+      const stars = 1 + (P.hp / P.max >= 0.5 ? 1 : 0) + (P.quizOk >= 1 && P.emgOk ? 1 : 0);
+      const first = !(S.stars[st.id] > 0);
+      S.stars[st.id] = Math.max(S.stars[st.id] || 0, stars);
+      S.xp += 100; let lvUp = false; while (S.xp >= 100) { S.xp -= 100; S.lv++; lvUp = true; }
+      this.save(); this.paintTop();
+      this.ev('game_stage_end', { stage: st.id, result: 'win', stars });
+      const chestR = stars >= 3 ? 'e' : stars === 2 ? 'r' : 'c';
+      const rates = { c: [70, 25, 5, 0], r: [45, 40, 13, 2], e: [20, 45, 28, 7] }[chestR];
+      // chuẩn bị đồ trong rương
+      const loot = [];
+      if (first && !S.inv[st.drop]) loot.push(st.drop);
+      const roll = Math.random() * 100; const rr = roll < rates[0] ? 'c' : roll < rates[0] + rates[1] ? 'r' : roll < rates[0] + rates[1] + rates[2] ? 'e' : 'l';
+      const charm = Object.keys(IT).find((k) => IT[k].t === 'charm' && IT[k].r === rr);
+      loot.push(S.inv[charm] ? (Math.random() < 0.5 ? 'p_heal' : 'p_clean') : charm);
+      loot.push(Math.random() < 0.6 ? 'p_heal' : 'p_clean');
+      const left = st.cards.map((c, i) => i).filter((i) => !S.cards.includes(st.id + '-' + i));
+      const card = left.length ? left[0] : null;
+      const el = this.screen('<div class="rp-center"><div class="rp-vic">CHIẾN THẮNG!</div><div style="font-size:30px;letter-spacing:6px;color:#FFD84D">' + '★'.repeat(stars) + '<span style="color:rgba(255,255,255,.25)">' + '★'.repeat(3 - stars) + '</span></div>' +
+        '<div style="font-size:14px">+100 EXP' + (lvUp ? '' : ' · Cấp ' + S.lv) + '</div>' + (lvUp ? '<div class="rp-lvup">⬆ LÊN CẤP ' + S.lv + '! Máu, Công, Thủ tăng.</div>' : '') +
+        '<div style="font-size:15px;font-weight:700">Bạn nhận được <span style="color:' + RAR[chestR].c + '">Rương ' + RAR[chestR].n + '</span>! Chạm vào rương 3 lần để mở.</div>' +
+        '<div class="rp-chestwrap" style="--rc:' + RAR[chestR].c + '"><div class="rp-rays"></div><button type="button" class="rp-chest" data-a="tap" aria-label="Mở rương">' + chestSVG(chestR) + '</button></div>' +
+        '<div class="rp-loot"></div><div class="rp-rates">Tỉ lệ rương ' + RAR[chestR].n + ': Thường ' + rates[0] + '% · Hiếm ' + rates[1] + '% · Sử thi ' + rates[2] + '% · Huyền thoại ' + rates[3] + '%. Đồ chỉ dùng trong game, không mua bằng tiền.</div><div class="rp-after"></div></div>', {
+        tap: (b) => {
+          this.taps = (this.taps || 0) + 1; SND('tap'); b.classList.remove('shake'); void b.offsetWidth; b.classList.add('shake'); b.classList.add('g' + Math.min(2, this.taps));
+          if (this.taps >= 3) {
+            b.disabled = true; this.taps = 0; SND('open'); el.querySelector('.rp-chestwrap').classList.add('open');
+            const box = el.querySelector('.rp-loot');
+            const list = loot.map((k) => ({ k, it: IT[k] }));
+            if (card != null) list.push({ card: true });
+            list.forEach((o, n) => setTimeout(() => {
+              if (o.card) { S.cards.push(st.id + '-' + card); box.insertAdjacentHTML('beforeend', '<div class="rp-lootc" style="--rc:#4FD1FF;animation-delay:0s"><span class="ic">🃏</span><b>Thẻ kiến thức ' + st.no + '.' + (card + 1) + '</b><small>' + esc(st.cards[card].t) + '</small></div>'); }
+              else { S.inv[o.k] = (S.inv[o.k] || 0) + 1; box.insertAdjacentHTML('beforeend', '<div class="rp-lootc' + (o.it.r === 'l' ? ' legend' : '') + '" style="--rc:' + RAR[o.it.r].c + '"><span class="ic">' + o.it.i + '</span><b>' + esc(o.it.n) + '</b><span>' + (o.it.el ? elTag(o.it.el) + ' ' : '') + rarTag(o.it.r) + '</span><small>' + esc(o.it.t === 'weapon' ? 'Vũ khí hệ ' + EL[o.it.el].n + ' · Công +' + o.it.atk : o.it.d) + '</small></div>'); }
+              SND(o.it && (o.it.r === 'e' || o.it.r === 'l') ? 'open' : 'up'); this.save();
+              if (n === list.length - 1) setTimeout(() => this.after(el.querySelector('.rp-after'), st, true), 500);
+            }, 500 + n * 450));
+            this.ev('game_chest', { stage: st.id, rarity: chestR });
+          }
+        }
+      }, (e) => { if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.classList.contains('rp-chest')) { /* nút tự xử lý */ } });
+      this.taps = 0; el.querySelector('.rp-chest').focus({ preventScroll: true });
+    }
+    defeat() {
+      const B = this.B, st = B.st; this.lock(true); SND('lose');
+      this.S.xp = Math.min(99, this.S.xp + 25); this.save(); this.paintTop();
+      this.ev('game_stage_end', { stage: st.id, result: 'lose' });
+      const el = this.screen('<div class="rp-center"><div class="rp-vic" style="background:linear-gradient(180deg,#FFD1CC,#E0464E);-webkit-background-clip:text;background-clip:text">THẤT BẠI…</div><div class="rp-mimo" data-mood="dizzy" style="width:110px">' + mimoSVG() + '</div><p style="margin:0;max-width:520px;font-size:14px;color:#E3DDFF">Mimo cần nghỉ ngơi! Gợi ý: đổi sang vũ khí khắc chế, Phòng thủ khi boss tụ lực, trả lời câu hỏi kiến thức để nạp Tối thượng. +25 EXP.</p><div class="rp-after"></div></div>', {});
+      this.after(el.querySelector('.rp-after'), st, false);
+    }
+    after(slot, st, win) {
+      const P = this.P, lessons = [];
+      if (P.emgOk === false) lessons.push({ t: st.emg.tip, sec: st.cards[2].sec });
+      P.wrong.forEach((q) => { if (lessons.length < 2) lessons.push({ t: q.exp.replace(/^(Sai!|Đúng!)\s*/, ''), sec: '' }); });
+      const words = (t) => new Set(t.toLowerCase().replace(/[^\p{L}\s]/gu, ' ').split(/\s+/).filter((w) => w.length >= 3));
+      const dup = (a, b) => { const A = words(a), B2 = words(b); let n = 0; A.forEach((w) => { if (B2.has(w)) n++; }); return n >= 4; };
+      st.cards.forEach((c) => { if (lessons.length < 3 && !lessons.some((x) => dup(x.t, c.t))) lessons.push(c); });
+      const nextI = st.no < 3 ? st.no : null;
+      slot.innerHTML = '<div class="rp-res"><div class="rp-learn"><h4>3 điều bạn vừa học ở ' + esc(st.place) + '</h4><ol>' + lessons.slice(0, 3).map((l) => '<li>' + esc(l.t) + '<small>' + (l.sec ? '→ Xem trong bài: mục “' + esc(l.sec) + '”' : '→ Xem lại trong bài viết') + '</small></li>').join('') + '</ol></div>' +
+        '<div class="rp-acts2"><button type="button" class="rp-btn rp-gold" data-a="book">Đặt lịch khám ' + esc(st.khoa) + '</button><button type="button" class="rp-btn rp-blue" data-a="ask">Hỏi bác sĩ</button>' +
+        (win && nextI != null ? '<button type="button" class="rp-btn rp-pur" data-a="next">➜ Tới ải ' + (nextI + 1) + '</button>' : '<button type="button" class="rp-btn rp-pur" data-a="retry">↻ Đánh lại</button>') + '<button type="button" class="rp-btn rp-ghost" data-a="map">🗺️ Về bản đồ</button></div><div class="rp-fslot" style="width:100%"></div>' +
+        '<div class="rp-small">Game giáo dục, không thay thế tư vấn, chẩn đoán y khoa. Cần gấp: gọi ' + HOTLINE + ' · cấp cứu 115.</div></div>';
+      Object.assign(this.h, { book: () => this.form('book', st, slot), ask: () => this.form('ask', st, slot), next: () => this.map(nextI), retry: () => this.battle(st.no - 1), map: () => this.map(st.no - 1) });
+    }
+    form(kind, st, slot) {
+      const fs = slot.querySelector('.rp-fslot'); this.ev('game_cta', { stage: st.id, cta: kind });
+      fs.innerHTML = kind === 'book'
+        ? '<div class="rp-form"><h4>Đặt lịch khám ' + esc(st.khoa) + '</h4><label class="rp-fl"><span>Chuyên khoa <span class="rp-mtag">Theo ải / bài</span></span><input class="rp-in pre" value="' + esc(st.khoa) + '"></label><label class="rp-fl"><span>Lý do khám <span class="rp-mtag">Tự điền</span></span><input class="rp-in pre" value="' + esc(st.reason) + '"></label><label class="rp-fl">Họ và tên<input class="rp-in" data-f="name" autocomplete="name" placeholder="Nguyễn Văn A"></label><label class="rp-fl">Số điện thoại<input class="rp-in" data-f="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912 345 678"></label><label class="rp-fl" style="flex-direction:row;gap:8px;font-weight:400;font-size:12px;align-items:flex-start"><input type="checkbox" data-f="ok" checked style="margin-top:2px">Tôi đồng ý để bệnh viện dùng thông tin này để liên hệ xác nhận lịch khám.</label><div class="rp-err" hidden></div><button type="button" class="rp-btn rp-blue" data-f="send">Gửi yêu cầu đặt lịch</button></div>'
+        : '<div class="rp-form"><h4>Hỏi bác sĩ khoa ' + esc(st.khoa) + '</h4><label class="rp-fl"><span>Câu hỏi <span class="rp-mtag">Soạn sẵn theo bài</span></span><textarea class="rp-in pre" rows="3">Về bài “' + esc(st.article) + '”: tôi muốn hỏi thêm về </textarea></label><label class="rp-fl">SĐT Zalo nhận câu trả lời<input class="rp-in" data-f="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912 345 678"></label><div class="rp-err" hidden></div><button type="button" class="rp-btn rp-blue" data-f="send">Gửi câu hỏi</button></div>';
+      const f = fs.firstChild;
+      f.querySelector('[data-f=send]').addEventListener('click', () => {
+        const ph = f.querySelector('[data-f=phone]').value.replace(/[\s.\-()]/g, ''), err = f.querySelector('.rp-err'), nm = f.querySelector('[data-f=name]'), ok = f.querySelector('[data-f=ok]');
+        let msg = ''; if (nm && !nm.value.trim()) msg = 'Bạn nhập họ tên giúp Mimo nhé.'; else if (!/^(0|\+?84)(3|5|7|8|9)\d{8}$/.test(ph)) msg = 'Số điện thoại chưa đúng (VD: 0912 345 678).'; else if (ok && !ok.checked) msg = 'Bạn cần đồng ý để bệnh viện liên hệ xác nhận lịch.';
+        if (msg) { err.textContent = msg; err.hidden = false; SND('bad'); return; }
+        const b = f.querySelector('[data-f=send]'); b.disabled = true; b.textContent = 'Đang gửi…';
+        setTimeout(() => { f.innerHTML = '<div class="rp-ok">✔ ' + (kind === 'book' ? '<b>Đã gửi yêu cầu đặt lịch khám ' + esc(st.khoa) + '.</b> Tổng đài sẽ gọi số ' + esc(ph) + ' để xác nhận giờ khám.' : '<b>Đã gửi câu hỏi tới bác sĩ khoa ' + esc(st.khoa) + '.</b> Câu trả lời sẽ gửi qua Zalo ' + esc(ph) + '.') + '</div>'; SND('up'); this.ev('game_form_submit', { stage: st.id, form: kind }); }, 900);
+      });
+      const sc = slot.closest('.rp-center'); if (sc) sc.scrollTo({ top: sc.scrollHeight, behavior: reduced() ? 'auto' : 'smooth' });
+      const first = f.querySelector('[data-f=name]') || f.querySelector('[data-f=phone]'); if (first) first.focus({ preventScroll: true });
+    }
+  }
+
+  /* ================= TRANG DEMO ================= */
+  function demo(root) {
+    const S = { art: 'sot', device: 'pc' }; let game = null;
+    const log = (n, d) => { if (window.console) console.log('[tracking]', n, d); };
+    root.classList.add('rp-root');
+    root.innerHTML = '<div class="rp-ctrl"><b>Bài đang đọc:</b><div class="rp-segs" data-g="art">' + STAGES.map((s) => '<button type="button" data-v="' + s.id + '">' + esc(s.reason) + ' · ' + esc(s.khoa) + '</button>').join('') + '</div><b>Xem trên:</b><div class="rp-segs" data-g="device"><button type="button" data-v="pc">Máy tính</button><button type="button" data-v="mb">Điện thoại</button></div><label style="display:inline-flex;gap:6px;align-items:center;cursor:pointer"><input type="checkbox" data-g="rm">Giảm chuyển động</label><button type="button" class="rp-reset" data-g="reset">Xóa tiến trình chơi</button></div><div class="rp-view"></div>' +
+      '<div class="rp-notes"><div class="rp-note"><h3>Vòng chơi</h3><ul><li><b>Bản đồ 3 ải</b>, mỗi ải là một chủ đề bài, một boss, một hệ. Ải của bài đang đọc luôn mở; ải khác mở khi thắng ải trước hoặc khi đọc bài tương ứng (kéo người đọc sang bài khác).</li><li><b>Đánh theo lượt</b>: Tấn công, Kỹ năng, Phòng thủ, Kiến thức, Vật phẩm, Tối thượng. Boss tụ lực, nổi giận ở nửa máu; có câu hỏi sinh tồn.</li><li>Thắng: EXP, lên cấp, <b>mở rương</b> (chạm 3 lần) theo độ hiếm; đồ rơi giúp khắc chế boss ải sau.</li></ul></div>' +
+      '<div class="rp-note"><h3>5 hệ &amp; hiệu ứng</h3><ul><li>💧 Nước → 🔥 Lửa → ❄️ Băng → 🌪️ Gió → 🪨 Đá → 💧 Nước: khắc chế x2, bị khắc x0,5. Hệ của Mimo theo vũ khí.</li><li>🔥 thiêu đốt · ❄️ đóng băng mất lượt · 🪨 phá giáp / Giáp Đá · 🌪️ né đòn · 💧 hồi máu, giải hiệu ứng. Boss: thiêu đốt, yếu giáp, choáng.</li><li>Hệ boss chọn để không ngược thông điệp y khoa: boss Sốt (Lửa) yếu trước Nước, không dùng Băng.</li></ul></div>' +
+      '<div class="rp-note"><h3>Đồ &amp; sưu tầm</h3><ul><li>5 vũ khí (mỗi cái 2 kỹ năng + 1 đòn Tối thượng theo hệ), 4 bùa, 2 vật phẩm; 4 độ hiếm Thường → Huyền thoại.</li><li>9 <b>Thẻ kiến thức</b> (bác sĩ duyệt) rơi từ rương, xem trong album, mỗi thẻ dẫn về mục trong bài.</li><li>Rương chỉ có đồ trong game, công khai tỉ lệ; không mua bằng tiền, không voucher khám.</li></ul></div>' +
+      '<div class="rp-note"><h3>Sau mỗi ải &amp; đo lường</h3><ul><li>3 điều vừa học → <b>Đặt lịch khám [khoa của ải]</b> / <b>Hỏi bác sĩ</b> điền sẵn.</li><li>Lưu tiến trình trên trình duyệt; âm thanh mặc định tắt; phím tắt 1–6.</li><li>Sự kiện: <code>game_stage_start</code>, <code>game_quiz</code>, <code>game_emergency_answer</code>, <code>game_stage_end</code>, <code>game_chest</code>, <code>game_cta</code>, <code>game_form_submit</code>.</li></ul></div></div>';
+    const view = root.querySelector('.rp-view');
+    const seg = (g, v) => root.querySelectorAll('[data-g=' + g + '] button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    root.querySelectorAll('[data-g=art] button').forEach((b) => b.addEventListener('click', () => { S.art = b.dataset.v; render(); }));
+    root.querySelectorAll('[data-g=device] button').forEach((b) => b.addEventListener('click', () => { S.device = b.dataset.v; render(); }));
+    root.querySelector('[data-g=rm]').addEventListener('change', (e) => document.documentElement.classList.toggle('rp-reduce', e.target.checked));
+    root.querySelector('[data-g=reset]').addEventListener('click', () => { try { localStorage.removeItem(SAVE_KEY); } catch (e) { /* bỏ qua */ } render(); });
+    const launcher = (st, compact) => '<div class="rpl"' + (compact ? ' style="margin:16px 0"' : '') + '><span class="rpl-k">GAME NHẬP VAI</span><div class="rpl-t">HÀNH TRÌNH MIỄN DỊCH</div><div class="rpl-art"><canvas width="220" height="192"></canvas><span>🎁</span></div><div class="rpl-el">🔥💧❄️🌪️🪨</div><div class="rpl-d">Cùng Mimo đánh bại ' + esc(st.boss.n) + ' và 2 boss khác, mở rương, sưu tầm 9 thẻ kiến thức.</div><button type="button" class="rp-btn rp-gold rp-pulse" data-a="play" style="width:100%">⚔️ BẮT ĐẦU HÀNH TRÌNH</button></div>';
+    const article = (st, ins) => '<article class="rpp-art"><h1>' + esc(st.article) + '</h1><p>' + esc(st.intro2) + '</p><div class="rpp-hero">[Ảnh bìa bài viết]</div>' + (ins || '') + st.secs.map((s) => '<h2>' + esc(s[0]) + '</h2><p>' + esc(s[1]) + '</p>').join('') + '</article>';
+    let raf = null;
+    function render() {
+      if (game) { game.close(); game = null; }
+      seg('art', S.art); seg('device', S.device);
+      const st = STAGES.find((s) => s.id === S.art);
+      if (S.device === 'pc') view.innerHTML = '<div class="rp-scaler dm-scaler" data-w="1280" data-h="860"><div class="rp-scaled dm-scaled dm-frame"><div class="rpp rpp-pc"><div class="rpp-head"><span class="rpp-logo">Tâm Anh Hospital</span><span class="rpp-hot"><span>Hà Nội <b>024 3872 3872</b></span><span>TP.HCM <b>093 180 6858</b></span></span></div><div class="rpp-scroll"><div class="rpp-wrap">' + article(st) + '<aside class="rpp-side" aria-label="Game Hành Trình Miễn Dịch">' + launcher(st, false) + '</aside></div></div></div></div></div>';
+      else view.innerHTML = '<div class="rp-phone-row"><div class="rp-phone"><div class="rp-phone-in"><div class="rpp rpp-mb"><div class="rpp-head"><span class="rpp-logo">Tâm Anh Hospital</span></div><div class="rpp-scroll">' + article(st, launcher(st, true)) + '</div><button type="button" class="rp-fab" data-a="play"><i>⚔️</i>Hành trình cùng Mimo</button></div></div></div></div>';
+      const host = view.querySelector('.rpp');
+      game = new RPG(host, S.device, S.art, { event: log, onClose: () => { const f = view.querySelector('.rp-fab'); if (f) f.hidden = false; }, goArticle: (id) => { S.art = id; render(); } });
+      window.__rpGame = game;
+      view.querySelectorAll('[data-a=play]').forEach((b) => b.addEventListener('click', () => { const f = view.querySelector('.rp-fab'); if (f) f.hidden = true; game.open(); }));
+      fit();
+      cancelAnimationFrame(raf); const cv = view.querySelector('.rpl-art canvas'), t0 = performance.now();
+      const step = (ts) => { if (!document.body.contains(cv)) return; const g = cv.getContext('2d'), t = (ts - t0) / 1000; g.clearRect(0, 0, 220, 192); drawBoss(g, { x: 110, y: 110, r: 58, color: st.boss.color, shape: st.boss.shape, flash: 0 }, t); raf = requestAnimationFrame(step); };
+      raf = requestAnimationFrame(step);
+      const f = view.querySelector('.rp-fab'); if (f) f.hidden = true;
+      game.open();
+    }
+    function fit() { root.querySelectorAll('.rp-scaler').forEach((s) => { if (!s.clientWidth) return; const inner = s.firstElementChild, k = Math.min(1, s.clientWidth / 1280); inner.style.width = '1280px'; inner.style.height = '860px'; inner.style.transform = 'scale(' + k + ')'; s.style.height = (860 * k) + 'px'; }); }
+    window.addEventListener('resize', fit);
+    render();
+    return { fit, render };
+  }
+  return { RPG, demo, STAGES, IT, SK };
+})();
+/* RP-JS-END */
+MimoRPG.demo(document.getElementById('rp-demo'));
+</script>
+</body>
+</html>
